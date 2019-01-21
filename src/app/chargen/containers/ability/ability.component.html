@@ -1,0 +1,86 @@
+<div class="bob">
+  <div><fieldset>
+    <legend>Fertigkeiten</legend>
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="increaseCosts">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+        <button mat-icon-button style="background: transparent"
+                (click)="incrementAbility(row.id)">
+          <mat-icon>add</mat-icon>
+        </button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="decreaseCosts">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button style="background: transparent"
+                  (click)="decrementAbility(row.id)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>
+          ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.id }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>
+          Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.name }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="attribut">
+        <mat-header-cell *matHeaderCellDef>
+          Attribut
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.attribut }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="wert">
+        <mat-header-cell *matHeaderCellDef>
+          Wert
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.wert }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="kosten">
+        <mat-header-cell *matHeaderCellDef>
+          Kosten
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.kosten }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="maxWert">
+        <mat-header-cell *matHeaderCellDef>
+          Max
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          4
+          <!--{{ row.maxWert }} TODO: In Konstante auslagern -->
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="gesamtKosten">
+        <mat-header-cell *matHeaderCellDef>
+          Gesamt-<br>kosten
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.gesamtKosten }}
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="dataColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: dataColumns;"></mat-row>
+    </mat-table>
+
+    <div class="kosten">GP-Kosten Bereich: {{ abilitiesTotalCosts$ | async }}</div>
+  </fieldset></div>
+</div>

@@ -1,0 +1,23 @@
+<div>
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Spezies</mat-card-title>
+      <mat-card-subtitle>Welche Spezies darf es sein? Wähle weise, du musst!</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <app-spezies></app-spezies>
+    </mat-card-content>
+  </mat-card>
+  <br>
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Charakterdaten</mat-card-title>
+      <mat-card-subtitle>Allgemeine Daten zu deinem Charakter</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <app-char-details></app-char-details>
+    </mat-card-content>
+  </mat-card>
+
+  <button mat-icon-button (click)="downloadPDF()">Download PDF</button>
+</div>

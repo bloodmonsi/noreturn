@@ -1,0 +1,25 @@
+.main {
+  display: grid;
+  grid-template-rows: 70px 1fr;
+  grid-template-columns: 10% 80% 10%;
+  align-items: center;
+  grid-template-areas:
+  ". header ."
+  ". content ."
+  /*"footer footer footer"*/
+  ;
+}
+
+header {
+  grid-area: header;
+}
+
+content {
+  grid-area: content;
+}
+
+/*footer {*/
+  /*grid-area: footer;*/
+  /*background-color: blue;*/
+/*}*/
+

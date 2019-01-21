@@ -1,0 +1,99 @@
+<!--<table *ngIf="values" id="attributes" name="attributes">-->
+  <!--<colgroup>-->
+    <!--<col style="width:20px" span="1">-->
+    <!--<col style="width:40%" span="1">-->
+  <!--</colgroup>-->
+  <!--<body>-->
+  <!--<tr class="ueberschrift">-->
+    <!--<td></td>-->
+    <!--<td></td>-->
+    <!--<td>{{ headline }}</td>-->
+    <!--<td>Wert</td>-->
+    <!--<td>Start/Max</td>-->
+    <!--<td>GP Kosten</td>-->
+  <!--</tr>-->
+  <!--<tr *ngFor="let value of values" [class.invalid]="value.wert>value.maxWert">-->
+    <!--<td><a class="button-blue tiny" (click)="onAttributeIncrement.next(value.id)">+</a></td>-->
+    <!--<td><a class="button-blue tiny" (click)="onAttributeDecrement.next(value.id)">-</a></td>-->
+    <!--<td>{{ value.name }}</td>-->
+    <!--<td>{{ value.wert }}</td>-->
+    <!--<td>{{ value.startWert }}/{{ value.maxWert }}</td>-->
+    <!--<td>{{ value.gesamtKosten }}</td>-->
+  <!--</tr>-->
+  <!--</body>-->
+<!--</table>-->
+
+<div class="bob">
+  <h1>{{ headline }}</h1>
+  <mat-table [dataSource]="values">
+    <ng-container matColumnDef="increaseCosts">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button style="background: transparent"
+                (click)="onAttributeIncrement.next(row.id)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="decreaseCosts">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button style="background: transparent"
+                (click)="onAttributeDecrement.next(row.id)">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>
+        ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.id }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>
+        Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.name }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="wert">
+      <mat-header-cell *matHeaderCellDef>
+        Wert
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.wert }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="startWert">
+      <mat-header-cell *matHeaderCellDef>
+        Startwert
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.startWert }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="maxWert">
+      <mat-header-cell *matHeaderCellDef>
+        Max
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.maxWert }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="gesamtKosten">
+      <mat-header-cell *matHeaderCellDef>
+        Gesamt-<br>kosten
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.gesamtKosten }}
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="dataColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: dataColumns;"></mat-row>
+  </mat-table>
+</div>
+

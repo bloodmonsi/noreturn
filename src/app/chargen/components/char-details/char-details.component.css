@@ -1,0 +1,9 @@
+.char-details-input {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.char-details-input-full-width {
+  width: 100%;
+}
