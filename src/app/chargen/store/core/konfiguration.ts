@@ -9,5 +9,5 @@ export interface Konfiguration {
   defaultSpezies: number;
   spezies: Spezies[];
   fertigkeiten: Fertigkeit[];
-  attribute: Attribut;
+  attribute: Attribut[];
 }

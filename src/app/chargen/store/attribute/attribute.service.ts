@@ -8,7 +8,7 @@ export class AttributService {
   constructor(private store: AttributStore) {
   }
 
-  updateAttribut(attribute: Attribut) {
+  updateAttribut(attribute: Attribut[]) {
     this.store.set(attribute);
   }
 }
