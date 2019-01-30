@@ -1,11 +1,10 @@
-import { Store, StoreConfig } from '@datorama/akita';
-import { Powerlevel, erstellePowerlevel } from './powerlevel.model';
-
-const initialState: Powerlevel = erstellePowerlevel({name: 'Bob', gp: 450});
+import { EntityStore, StoreConfig } from '@datorama/akita';
+import { Powerlevel } from './powerlevel.model';
+import { PowerlevelState } from './powerlevel.state';
 
 @StoreConfig({name: 'powerlevel'})
-export class PowerlevelStore extends Store<Powerlevel> {
+export class PowerlevelStore extends EntityStore<PowerlevelState, Powerlevel> {
   constructor() {
-    super(initialState);
+    super();
   }
 }

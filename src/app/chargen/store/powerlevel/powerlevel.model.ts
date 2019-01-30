@@ -6,8 +6,8 @@ export interface Powerlevel {
   gp: number;
 }
 
-export function erstellePowerlevel({ id = null, name = '', gp = 0}: Partial<Powerlevel>) {
-  return {
-    id, name, gp
-  };
-}
+// export function erstellePowerlevel({ id = null, name = '', gp = 0}: Partial<Powerlevel>) {
+//   return {
+//     id, name, gp
+//   };
+// }

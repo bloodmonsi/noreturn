@@ -8,11 +8,8 @@ export class PowerlevelService {
   constructor(private store: PowerlevelStore) {
   }
 
-  updatePowerlevel(powerlevel: Powerlevel) {
-    this.store.update({
-      id: powerlevel.id,
-      name: powerlevel.name,
-      gp: powerlevel.gp
-    });
+  updatePowerlevel(powerlevel: Powerlevel[]) {
+    this.store.set(powerlevel);
+    this.store.setActive(powerlevel[1].id);
   }
 }

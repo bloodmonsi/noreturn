@@ -8,13 +8,13 @@ export class FertigkeitService {
   constructor(private store: FertigkeitStore) {
   }
 
-  updateFertigkeit(fertigkeiten: Fertigkeit) {
-    this.store.update({
-      id: fertigkeiten.id,
-      name: fertigkeiten.name,
-      attribut: fertigkeiten.attribut,
-      input: fertigkeiten.input,
-      wert: fertigkeiten.wert
-    });
+  updateFertigkeit(fertigkeiten: Fertigkeit[]) {
+    this.store.set(fertigkeiten);
+
+    // this.store.update(4, (fertigkeit:Fertigkeit) => ({
+    //   wert: fertigkeit.wert + 1
+    //   });
+    //
+    // );
   }
 }

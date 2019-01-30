@@ -2,7 +2,7 @@ import { Route, RouterModule } from '@angular/router';
 import { ChargenComponent } from './chargen.component';
 import { OverviewComponent } from './containers/overview/overview.component';
 import { AttributeComponent } from './containers/attribute/attribute.component';
-import { AbilityComponent } from "./containers/ability/ability.component";
+import { AbilityComponent } from './containers/ability/ability.component';
 
 const routes: Route[] = [
   {

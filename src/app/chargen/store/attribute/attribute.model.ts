@@ -7,9 +7,3 @@ export interface Attribut {
   kosten: number;
   primaer: boolean;
 }
-
-export function erstelleAttribut({ id = null, name = '', kurzName = '', kosten = 0, primaer = true}: Partial<Attribut>) {
-  return {
-    id, name, kurzName, kosten, primaer
-  };
-}

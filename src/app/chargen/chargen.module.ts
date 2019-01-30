@@ -50,19 +50,19 @@ import { Konfiguration } from './store/core/konfiguration';
 })
 
 export class ChargenModule {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private powerlevelService: PowerlevelService,
+              private speziesService: SpeziesService, private attributService: AttributService,
+              private fertigkeitService: FertigkeitService) {
     this.init();
   }
 
   init() {
     this.load().then(res => {
+      this.attributService.updateAttribut(res.attribute);
+      this.speziesService.updateSpezies(res.spezies);
+      this.fertigkeitService.updateFertigkeit(res.fertigkeiten);
+      this.powerlevelService.updatePowerlevel(res.powerlevel);
 
-      AttributService.prototype.updateAttribut(res.attribute);
-      SpeziesService.prototype.updateSpezies(res.spezies);
-      FertigkeitService.prototype.updateFertigkeit(res.fertigkeiten);
-      PowerlevelService.prototype.updatePowerlevel(res.powerlevel);
-      // this.store.dispatch(new fromStore.FillSelectedSpeziesAction(res.defaultSpezies));
-      // this.store.dispatch(new fromStore.FillSelectedPowerlevelAction(res.defaultPowerlevel));
     }).catch(e => {
       console.log(e);
     });

@@ -9,12 +9,6 @@ export class AttributService {
   }
 
   updateAttribut(attribute: Attribut) {
-    this.store.update({
-      id: attribute.id,
-      name: attribute.name,
-      kurzName: attribute.kurzName,
-      kosten: attribute.kosten,
-      primaer: attribute.primaer
-    });
+    this.store.set(attribute);
   }
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Store } from '@datorama/akita';
-import { SpeziesStore } from '../../store/spezies/spezies.store';
+import { Component, OnInit } from '@angular/core';
+import { ID } from '@datorama/akita';
+import { SpeziesQuery, SpeziesStore, Spezies } from '../../store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-spezies',
@@ -8,15 +9,15 @@ import { SpeziesStore } from '../../store/spezies/spezies.store';
   styleUrls: ['./spezies.component.css']
 })
 export class SpeziesComponent implements OnInit {
-  currentSpezies: number;
-  speziesList$;
+  currentSpezies: ID;
+  speziesList$: Observable<Spezies[]>;
 
-  constructor(private store: Store<SpeziesStore>) { }
+  constructor(private store: SpeziesStore, private query: SpeziesQuery) {
+  }
 
   ngOnInit() {
-    this.speziesList$ = this.store.select(fromStore.SPEZIESSELECTORS.getSpeziesList);
-
-    this.store.select(fromStore.SPEZIESSELECTORS.getSelectedSpeziesId).subscribe(selectedId => {
+    this.speziesList$ = this.query.selectAll();
+    this.query.selectActiveId().subscribe(selectedId => {
       if (selectedId != null && selectedId !== this.currentSpezies) {
         this.currentSpezies = selectedId;
       }
@@ -24,7 +25,7 @@ export class SpeziesComponent implements OnInit {
   }
 
   speziesChanged(currentSpezies: number) {
-    this.store.dispatch(new fromStore.FillSelectedSpeziesAction(currentSpezies));
+    this.store.setActive(currentSpezies);
   }
 
 }

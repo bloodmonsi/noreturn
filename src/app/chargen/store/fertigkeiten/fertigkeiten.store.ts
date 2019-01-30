@@ -1,11 +1,10 @@
-import { Store, StoreConfig } from '@datorama/akita';
-import { Fertigkeit, erstelleFertigkeit } from './fertigkeiten.model';
-
-const initialState: Fertigkeit = erstelleFertigkeit({name: 'Bob', attribut: 'GE', input: 'true', wert: 1});
+import { EntityStore, StoreConfig } from '@datorama/akita';
+import { Fertigkeit } from './fertigkeiten.model';
+import { FertigkeitState } from './fertigkeiten.state';
 
 @StoreConfig({name: 'fertigkeit'})
-export class FertigkeitStore extends Store<Fertigkeit> {
+export class FertigkeitStore extends EntityStore<FertigkeitState, Fertigkeit> {
   constructor() {
-    super(initialState);
+    super();
   }
 }

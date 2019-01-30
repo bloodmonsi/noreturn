@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: 'app/chargen/chargen.module#ChargenModule'
+    loadChildren: './chargen#ChargenModule'
   }
 ];
 

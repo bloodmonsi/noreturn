@@ -7,9 +7,3 @@ export interface Fertigkeit {
   input: string;
   wert: number;
 }
-
-export function erstelleFertigkeit({ id = null, name = '', attribut = '', input = '', wert = 0}: Partial<Fertigkeit>) {
-  return {
-    id, name, attribut, input, wert
-  };
-}

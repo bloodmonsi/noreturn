@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as fromStore from '../../store/index';
-import { PowerlevelStore } from '../../store/index';
+import { PowerlevelQuery, PowerlevelStore, Powerlevel } from '../../store/index';
+import { Observable } from 'rxjs';
+import { ID } from '@datorama/akita';
 
 @Component({
   selector: 'app-powerlevel',
@@ -8,22 +9,22 @@ import { PowerlevelStore } from '../../store/index';
   styleUrls: ['./powerlevel.component.css']
 })
 export class PowerlevelComponent implements OnInit {
-  currentPowerlevel: number;
-  powerlevels$;
+  currentPowerlevel: ID;
+  powerlevels$: Observable<Powerlevel[]>;
 
-  constructor(private store: PowerlevelStore) {}
+  constructor(private store: PowerlevelStore, private query: PowerlevelQuery) {}
 
   ngOnInit() {
-    this.powerlevels$ = this.store.select(fromStore.POWERLEVELSELECTORS.getPowerlevelList);
-
-    this.store.select(fromStore.POWERLEVELSELECTORS.getSelectedPowerlevelId).subscribe(selectedId => {
-
-      this.currentPowerlevel = selectedId;
-
+    this.powerlevels$ = this.query.selectAll();
+    // todo: unsubscribe weil Memoryleak
+    this.query.selectActiveId().subscribe(selectedId => {
+      if (selectedId != null && selectedId !== this.currentPowerlevel) {
+        this.currentPowerlevel = selectedId;
+      }
     });
   }
 
   powerlevelChanged(currentPowerlevel: number) {
-    this.store.dispatch(new fromStore.FillSelectedPowerlevelAction(currentPowerlevel));
+    this.store.setActive(currentPowerlevel);
   }
 }
