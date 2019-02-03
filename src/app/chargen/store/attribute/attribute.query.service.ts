@@ -12,4 +12,9 @@ export class AttributQuery extends QueryEntity<AttributeState, Attribut> {
   constructor(protected store: AttributStore) {
     super(store);
   }
+
+  readonly primaryAttributList$ = this.selectAll({
+    filterBy: attribut => attribut.primaer === true
+  });
+
 }
