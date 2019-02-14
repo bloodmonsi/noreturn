@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import * as fromStore from '../../store/index';
-import { AttributQuery, AttributStore } from '../../store/index';
+import { AttributQuery, AttributService, AttributStore } from '../../store/index';
 import { Observable } from 'rxjs';
 import { Attribut } from '../../store/attribute/attribute.model';
 
@@ -18,20 +18,20 @@ export class AttributeComponent implements OnInit {
   secondaryDataSource: MyAttributeDatasource;
   dataColumns: string[];
 
-  constructor(private store: AttributStore, private query: AttributQuery) {
-    this.primaryDataSource = new MyAttributeDatasource(this.query.selectAll());
-    this.secondaryDataSource = new MyAttributeDatasource(this.query.selectAll());
+  constructor(private store: AttributStore, private query: AttributQuery, private service: AttributService) {
+    this.primaryDataSource = new MyAttributeDatasource(this.query.primaryAttributList$);
+    this.secondaryDataSource = new MyAttributeDatasource(this.query.secondaryAttributList$);
     this.dataColumns = [ 'increaseCosts', 'decreaseCosts', 'name', 'wert', 'maxWert', 'gesamtKosten'];
   }
 
   ngOnInit() {
-    this.primaryAttributes$ = this.query.selectAll();
-    this.secondaryAttributes$ = this.query.selectAll();
+    this.primaryAttributes$ = this.query.primaryAttributList$;
+    this.secondaryAttributes$ = this.query.secondaryAttributList$;
     // this.attributesTotalCosts$ = this.store.select(fromStore.ATTRIBUTESELECTORS.getAttributesTotalCosts);
   }
 
   incrementAttribute(entitieId: number) {
-    // this.store.dispatch(new fromStore.IncrementAttributeAction(entitieId));
+    // this.service.incrementAttribut(this.query.selectEntity(entitieId));
   }
 
   decrementAttribute(entitieId: number) {

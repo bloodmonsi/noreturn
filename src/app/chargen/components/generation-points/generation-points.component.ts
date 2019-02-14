@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as fromStore from '../../store/index';
 import { Observable } from 'rxjs';
+import { PowerlevelStore } from '../../store/index';
+import { PowerlevelQuery } from '../../store/index';
 
 @Component({
   selector: 'app-generation-points',
@@ -13,12 +14,13 @@ export class GenerationPointsComponent implements OnInit {
   maximumPoints$: Observable<number>;
   verbleibendePunkte$: Observable<number>;
 
-  constructor() { }
+  constructor(private store: PowerlevelStore, private query: PowerlevelQuery) {
+  }
 
   ngOnInit() {
     // this.remainingPoints = this.chargenservice.getRemainingGenerationPoints();
     // this.maximumPoints = this.chargenservice.getMaximumPoints();
-    // this.maximumPoints$ = this.store.select(fromStore.POWERLEVELSELECTORS.getMaxPoints);
+    this.maximumPoints$ = this.query.getMaximumGp$;
     // // this.remainingPoints$ = this.store.select(fromStore.ATTRIBUTESELECTORS.getRemainingPoints);
     // // this.store.select(POWERLEVELSELECTORS.getMaxPoints).subscribe(console.log);
     // this.verbleibendePunkte$ = this.store.select(fromStore.getVerbleibendePunkte);

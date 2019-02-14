@@ -12,4 +12,9 @@ export class PowerlevelQuery extends QueryEntity<PowerlevelState, Powerlevel> {
   constructor(protected store: PowerlevelStore) {
     super(store);
   }
+
+  readonly getMaximumGp$ = this.selectActive(entity => entity.gp);
+
+
+
 }

@@ -14,7 +14,11 @@ export class AttributQuery extends QueryEntity<AttributeState, Attribut> {
   }
 
   readonly primaryAttributList$ = this.selectAll({
-    filterBy: attribut => attribut.primaer === true
+    filterBy: attribute => attribute.primaer
+  });
+
+  readonly secondaryAttributList$ = this.selectAll({
+    filterBy: attribute => !attribute.primaer
   });
 
 }
