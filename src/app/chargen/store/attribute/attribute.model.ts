@@ -6,4 +6,5 @@ export interface Attribut {
   kurzName: string;
   kosten: number;
   primaer: boolean;
+  wert: number;
 }

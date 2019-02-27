@@ -31,7 +31,7 @@ export class AttributeComponent implements OnInit {
   }
 
   incrementAttribute(entitieId: number) {
-    // this.service.incrementAttribut(this.query.selectEntity(entitieId));
+    this.service.incrementAttribut(entitieId);
   }
 
   decrementAttribute(entitieId: number) {
