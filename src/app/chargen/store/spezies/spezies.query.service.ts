@@ -12,4 +12,6 @@ export class SpeziesQuery extends QueryEntity<SpeziesState, Spezies> {
   constructor(protected store: SpeziesStore) {
     super(store);
   }
+
+  readonly getSpeziesGp$ = this.selectActive(entity => entity.kosten);
 }

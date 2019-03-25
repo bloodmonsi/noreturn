@@ -15,6 +15,4 @@ export class PowerlevelQuery extends QueryEntity<PowerlevelState, Powerlevel> {
 
   readonly getMaximumGp$ = this.selectActive(entity => entity.gp);
 
-
-
 }

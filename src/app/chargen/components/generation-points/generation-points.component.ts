@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PowerlevelStore } from '../../store/index';
+import { combineLatest, Observable } from 'rxjs';
+import { PowerlevelStore, SpeziesQuery } from '../../store/index';
 import { PowerlevelQuery } from '../../store/index';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-generation-points',
@@ -11,20 +12,24 @@ import { PowerlevelQuery } from '../../store/index';
 export class GenerationPointsComponent implements OnInit {
 
   // remainingPoints$: Observable<number>;
-  maximumPoints$: Observable<number>;
-  verbleibendePunkte$: Observable<number>;
+  maximumGp$: Observable<number>;
+  verbleibendeGp$: Observable<number>;
+  speziesGp$: Observable<number>;
 
-  constructor(private store: PowerlevelStore, private query: PowerlevelQuery) {
+  constructor(private store: PowerlevelStore, private powerlevelQuery: PowerlevelQuery, private speziesQuery: SpeziesQuery) {
   }
 
   ngOnInit() {
     // this.remainingPoints = this.chargenservice.getRemainingGenerationPoints();
     // this.maximumPoints = this.chargenservice.getMaximumPoints();
-    this.maximumPoints$ = this.query.getMaximumGp$;
-    // // this.remainingPoints$ = this.store.select(fromStore.ATTRIBUTESELECTORS.getRemainingPoints);
-    // // this.store.select(POWERLEVELSELECTORS.getMaxPoints).subscribe(console.log);
-    // this.verbleibendePunkte$ = this.store.select(fromStore.getVerbleibendePunkte);
+    this.maximumGp$ = this.powerlevelQuery.getMaximumGp$;
+    this.speziesGp$ = this.speziesQuery.getSpeziesGp$;
+    this.verbleibendeGp$ = this.getVerbleibendeGp();
+  }
 
+  getVerbleibendeGp() {
+    const combined = combineLatest(this.maximumGp$, this.speziesGp$);
+    return combined.pipe(map(([valueStream1, valueStream2]) => valueStream1 - valueStream2));
   }
 
 }
