@@ -23,6 +23,7 @@ import {
 } from './store';
 import { HttpClient } from '@angular/common/http';
 import { Konfiguration } from './store/core/konfiguration';
+import { CommonQuery } from './store/common.query.service';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { Konfiguration } from './store/core/konfiguration';
     PowerlevelQuery,
     FertigkeitStore,
     FertigkeitQuery,
-    FertigkeitService
+    FertigkeitService,
+    CommonQuery
   ]
 })
 

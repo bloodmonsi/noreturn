@@ -14,4 +14,6 @@ export class SpeziesQuery extends QueryEntity<SpeziesState, Spezies> {
   }
 
   readonly getSpeziesGp$ = this.selectActive(entity => entity.kosten);
+
+  readonly getAttributeStartwerte$ = this.selectActive( entity => entity.geStart);
 }

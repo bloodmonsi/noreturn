@@ -10,6 +10,6 @@ export class SpeziesService {
 
   updateSpezies(spezies: Spezies[]) {
     this.store.set(spezies);
-    this.store.setActive(spezies[2].id);
+    this.store.setActive(spezies[0].id);
   }
 }
