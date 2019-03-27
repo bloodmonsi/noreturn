@@ -1,9 +1,6 @@
 <label>Powerlevel</label>
 <select *ngIf="powerlevels$ | async as values" id="powerlevel" name="powerlevel" (ngModelChange)="powerlevelChanged($event)"
         [(ngModel)]="currentPowerlevel">
-  <option [ngValue]="null">
-    Bitte wählen
-  </option>
   <option *ngFor="let value of values" [ngValue]="value.id">
     {{ value.name }}
   </option>

@@ -16,7 +16,7 @@ export class AttributeComponent implements OnInit {
   primaryDataSource: MyAttributeDatasource;
   secondaryDataSource: MyAttributeDatasource;
   dataColumns: string[];
-  attributeStartwerte: Spezies;
+  // attributeStartwerte$: Spezies;
 
   constructor(private store: AttributStore, private query: AttributQuery, private service: AttributService) {
     this.primaryDataSource = new MyAttributeDatasource(this.query.primaryAttributList$);
@@ -27,7 +27,7 @@ export class AttributeComponent implements OnInit {
   ngOnInit() {
     this.primaryAttributes$ = this.query.primaryAttributList$;
     this.secondaryAttributes$ = this.query.secondaryAttributList$;
-    this.attributeStartwerte = this.query.getStartwerte();
+    // this.attributeStartwerte$ = this.query.getStartwerte();
   }
 
   incrementAttribute(entitieId: number) {

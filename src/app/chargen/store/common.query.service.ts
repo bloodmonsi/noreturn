@@ -7,7 +7,6 @@ import { SpeziesQuery } from './spezies/spezies.query.service';
 @Injectable()
 export class CommonQuery {
 
-  // readonly name$ = this.select(fertigkeit => fertigkeit.name);
 
   constructor(private speziesQuery: SpeziesQuery, private powerlevelQuery: PowerlevelQuery) {
   }
@@ -26,8 +25,9 @@ export class CommonQuery {
         valueStream2
       });
 
-      return valueStream1 - valueStream2;
-      // return (valueStream1 || 0) - (valueStream2 || 0);
+      // return valueStream1 - valueStream2;
+      // ToDO
+      return (valueStream1 || 0) - (valueStream2 || 0);
     }));
   }
 
