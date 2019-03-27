@@ -5,6 +5,7 @@
       <div>
         <div>
           <app-attribute-table headline="Primärattribute" [values]="primaryDataSource" [dataColumns]="dataColumns"
+                               [startwerte]="attributeStartwerte"
                                (onAttributeIncrement)="incrementAttribute($event)"
                                (onAttributeDecrement)="decrementAttribute($event)"></app-attribute-table>
         </div>

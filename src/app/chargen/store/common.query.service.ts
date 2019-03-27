@@ -20,7 +20,15 @@ export class CommonQuery {
     this.speziesGp$ = this.speziesQuery.getSpeziesGp$;
     this.maximumGp$ = this.powerlevelQuery.getMaximumGp$;
     const combined = combineLatest(this.maximumGp$, this.speziesGp$);
-    return combined.pipe(map(([valueStream1, valueStream2]) => valueStream1 - valueStream2));
+    return combined.pipe(map(([valueStream1, valueStream2]) => {
+      console.log({
+        valueStream1,
+        valueStream2
+      });
+
+      return valueStream1 - valueStream2;
+      // return (valueStream1 || 0) - (valueStream2 || 0);
+    }));
   }
 
 

@@ -9,6 +9,7 @@ export class AttributeTableComponent implements OnInit {
   @Input() values;
   @Input() headline;
   @Input() dataColumns;
+  @Input() startwerte;
   @Output() onAttributeIncrement = new EventEmitter<number>();
   @Output() onAttributeDecrement = new EventEmitter<number>();
   constructor() { }

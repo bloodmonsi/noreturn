@@ -9,11 +9,11 @@ export class SpeziesQuery extends QueryEntity<SpeziesState, Spezies> {
 
   // readonly name$ = this.select(spezies => spezies.name);
 
+  readonly getActiveSpezies$ = this.getActive();
+  readonly getSpeziesGp$ = this.selectActive(entity => entity ? entity.kosten : 0);
+  readonly getAttributeStartwerte$ = this.selectActive(entity => entity.geStart);
+
   constructor(protected store: SpeziesStore) {
     super(store);
   }
-
-  readonly getSpeziesGp$ = this.selectActive(entity => entity.kosten);
-
-  readonly getAttributeStartwerte$ = this.selectActive( entity => entity.geStart);
 }
