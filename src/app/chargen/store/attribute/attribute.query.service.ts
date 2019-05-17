@@ -26,11 +26,21 @@ export class AttributQuery extends QueryEntity<AttributeState, Attribut> {
   getStartwerte() {
     const combined = combineLatest(this.primaryAttributList$, this.activeSpezies$);
     return combined.pipe(map(([attributList, activeSpezies]) => {
+      return attributList.map(attribut => {
+        // const id = attribut.id as string;
+        const keyPrefix = attribut.kurzName.toLowerCase();
+        // const startKey = keyPrefix + 'Start';
+        const maxKey = keyPrefix + 'Max';
+        // const startValue = activeSpezies[startKey];
+        const maxValue = activeSpezies[maxKey];
 
-
-      // return valueStream1 - valueStream2;
-      // ToDO
-      return (valueStream1 || 0) - (valueStream2 || 0);
+        return {
+          ...attribut,
+          // startValue,
+          maxValue,
+          gesamtKosten: attribut.wert * attribut.kosten
+        };
+      });
     }));
     // return this.speziesQuery.selectAll().pipe(map(entities => entities.map));
     // return this.activeSpezies$;

@@ -1,9 +1,21 @@
 import { ID } from '@datorama/akita';
 
+
+export const speczies: Spezies = {
+  id: 'bla',
+  name: 'lorem',
+  attribute: {
+    'ch': { start: 43, max: 100 },
+    'bla': { start: 43, max: 100 }
+  }
+}
+
+
 export interface Spezies {
   id: ID;
   name: string;
   kosten: number;
+  attribute: { [key: string]: { start: number; max: number; } };
   geStart: number;
   geMax: number;
   stStart: number;

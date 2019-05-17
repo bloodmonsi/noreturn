@@ -19,7 +19,7 @@ export class AttributeComponent implements OnInit {
   // attributeStartwerte$: Spezies;
 
   constructor(private store: AttributStore, private query: AttributQuery, private service: AttributService) {
-    this.primaryDataSource = new MyAttributeDatasource(this.query.primaryAttributList$);
+    this.primaryDataSource = new MyAttributeDatasource(this.query.getStartwerte());
     this.secondaryDataSource = new MyAttributeDatasource(this.query.secondaryAttributList$);
     this.dataColumns = [ 'increaseCosts', 'decreaseCosts', 'name', 'wert', 'maxWert', 'gesamtKosten'];
   }
