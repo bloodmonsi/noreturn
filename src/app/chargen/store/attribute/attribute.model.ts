@@ -1,9 +1,6 @@
-import { ID } from '@datorama/akita';
-
 export interface Attribut {
-  id: ID;
+  id: string;
   name: string;
-  kurzName: string;
   kosten: number;
   primaer: boolean;
   wert: number;

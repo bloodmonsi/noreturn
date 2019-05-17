@@ -1,14 +1,14 @@
 import { ID } from '@datorama/akita';
 
-
-export const speczies: Spezies = {
-  id: 'bla',
-  name: 'lorem',
-  attribute: {
-    'ch': { start: 43, max: 100 },
-    'bla': { start: 43, max: 100 }
-  }
-}
+//
+// export const speczies: Spezies = {
+//   id: 'bla',
+//   name: 'lorem',
+//   attribute: {
+//     'ch': { start: 43, max: 100 },
+//     'bla': { start: 43, max: 100 }
+//   }
+// }
 
 
 export interface Spezies {

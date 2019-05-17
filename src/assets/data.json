@@ -779,90 +779,80 @@
   ],
   "attribute": [
     {
-      "id": 0,
+      "id": "ge",
       "name": "Geschick",
-      "kurzName": "GE",
       "kosten": 10,
       "geistig": "false",
       "primaer": true,
       "note": "Corebook; S.XX"
     },
     {
-      "id": 1,
+      "id": "st",
       "name": "St\u00E4rke",
-      "kurzName": "ST",
       "kosten": 10,
       "geistig": "false",
       "primaer": true,
       "note": "Corebook; S.XX"
     },
     {
-      "id": 2,
+      "id": "ko",
       "name": "Konstitution",
-      "kurzName": "KO",
       "kosten": 10,
       "geistig": "false",
       "primaer": true,
       "note": "Corebook; S.XX"
     },
     {
-      "id": 3,
+      "id": "sk",
       "name": "Schnelligkeit",
-      "kurzName": "SK",
       "kosten": 10,
       "geistig": "false",
       "primaer": true,
       "note": "Corebook; S.XX"
     },
     {
-      "id": 4,
+      "id": "wi",
       "name": "Wissen",
-      "kurzName": "WI",
       "kosten": 10,
       "geistig": "true",
       "primaer": true,
       "note": "Corebook; S.XX"
     },
     {
-      "id": 5,
+      "id": "wa",
       "name": "Wahrnehmung",
-      "kurzName": "WA",
       "kosten": 10,
       "geistig": "false",
       "primaer": true,
       "note": "Corebook; S.XX"
     },
     {
-      "id": 6,
+      "id": "ch",
       "name": "Charisma",
-      "kurzName": "CH",
       "kosten": 5,
       "geistig": "true",
       "primaer": false,
       "note": "Corebook; S.XX"
     },
     {
-      "id": 7,
+      "id": "lo",
       "name": "Logik",
-      "kurzName": "LO",
       "kosten": 5,
       "geistig": "true",
       "primaer": false,
       "note": "Corebook; S.XX"
     },
     {
-      "id": 8,
+      "id": "fa",
       "name": "Fahrzeug",
-      "kurzName": "FA",
       "kosten": 5,
       "geistig": "true",
       "primaer": false,
       "note": "Corebook; S.XX"
     },
     {
-      "id": 9,
+      "id": "to",
       "name": "Schmerztoleranz",
-      "kurzName": "TO",
       "kosten": 5,
       "geistig": "false",
       "primaer": false,

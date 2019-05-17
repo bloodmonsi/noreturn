@@ -30,7 +30,7 @@ export class AttributeComponent implements OnInit {
     // this.attributeStartwerte$ = this.query.getStartwerte();
   }
 
-  incrementAttribute(entitieId: number) {
+  incrementAttribute(entitieId: string) {
     this.service.incrementAttribut(entitieId);
   }
 
