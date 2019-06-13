@@ -24,23 +24,47 @@ export class AttributQuery extends QueryEntity<AttributeState, Attribut> {
     super(store);
   }
 
-  getStartwerte() {
+  getStartwertePrimaryAttribut() {
     const combined = combineLatest(this.primaryAttributList$, this.activeSpezies$);
     return combined.pipe(map(([attributList, activeSpezies]) => {
       return attributList.map(attribut => {
-        const id = attribut.id as string;
+        // const id = attribut.id as string;
         const keyPrefix = attribut.id;
-        // const startKey = keyPrefix + 'Start';
+        const startKey = keyPrefix + 'Start';
         const maxKey = keyPrefix + 'Max';
-        // const startValue = activeSpezies[startKey];
-        console.log('Bob ' + activeSpezies[maxKey]);
+        const startWert = activeSpezies[startKey];
+        console.log('startWert ' + startWert);
         const maxWert = activeSpezies[maxKey];
-        console.log('Bla ' + attribut.wert);
+        console.log('maxwert ' + maxWert);
         return {
           ...attribut,
-          // startValue,
+          startWert,
           maxWert,
-          gesamtKosten: attribut.wert * attribut.kosten
+          gesamtKosten: startWert * attribut.kosten
+        };
+      });
+    }));
+    // return this.speziesQuery.selectAll().pipe(map(entities => entities.map));
+    // return this.activeSpezies$;
+  }
+
+  getStartwerteSecondaryAttribut() {
+    const combined = combineLatest(this.secondaryAttributList$, this.activeSpezies$);
+    return combined.pipe(map(([attributList, activeSpezies]) => {
+      return attributList.map(attribut => {
+        // const id = attribut.id as string;
+        const keyPrefix = attribut.id;
+        const startKey = keyPrefix + 'Start';
+        const maxKey = keyPrefix + 'Max';
+        const startWert = activeSpezies[startKey];
+        console.log('startWert ' + startWert);
+        const maxWert = activeSpezies[maxKey];
+        console.log('maxwert ' + maxWert);
+        return {
+          ...attribut,
+          startWert,
+          maxWert,
+          gesamtKosten: startWert * attribut.kosten
         };
       });
     }));

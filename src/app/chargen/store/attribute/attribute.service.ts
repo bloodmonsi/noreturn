@@ -19,11 +19,17 @@ export class AttributService {
     }));
   }
 
-  setzeStartwerte(attributID: string) {
-    const activeSpezies = this.speziesQuery.getActiveSpezies$;
+  decrementAttribut(attributID: string) {
     this.store.update(attributID, entitaet => ({
-      wert: activeSpezies[attributID + 'Start']
+      wert: entitaet.wert - 1
     }));
   }
+
+  // setzeStartwerte(attributID: string) {
+  //   const activeSpezies$ = this.speziesQuery.getActiveSpezies$;
+  //   this.store.update(attributID, entitaet => ({
+  //     wert: activeSpezies$[attributID + 'Start']
+  //   }));
+  // }
 
 }

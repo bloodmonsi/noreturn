@@ -19,15 +19,15 @@ export class SpeziesService {
     this.store.setActive(currentSprezies);
 
     // spezies[0].chStart
-    this.attributService.setzeStartwerte('ge');
-    this.attributService.setzeStartwerte('st');
-    this.attributService.setzeStartwerte('ko');
-    this.attributService.setzeStartwerte('sk');
-    this.attributService.setzeStartwerte('wi');
-    this.attributService.setzeStartwerte('wa');
-    this.attributService.setzeStartwerte('ch');
-    this.attributService.setzeStartwerte('lo');
-    this.attributService.setzeStartwerte('fa');
-    this.attributService.setzeStartwerte('to');
+    // this.attributService.setzeStartwerte('ge');
+    // this.attributService.setzeStartwerte('st');
+    // this.attributService.setzeStartwerte('ko');
+    // this.attributService.setzeStartwerte('sk');
+    // this.attributService.setzeStartwerte('wi');
+    // this.attributService.setzeStartwerte('wa');
+    // this.attributService.setzeStartwerte('ch');
+    // this.attributService.setzeStartwerte('lo');
+    // this.attributService.setzeStartwerte('fa');
+    // this.attributService.setzeStartwerte('to');
   }
 }
