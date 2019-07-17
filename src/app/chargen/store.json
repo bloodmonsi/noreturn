@@ -1,0 +1,52 @@
+{
+  "attribute": {
+    "ge": {
+      "id": 'ge',
+      "name": 'Geschick',
+      "kosten": 10,
+      "geistig": 'false',
+      "primaer": true,
+      "note": 'Corebook; S.XX',
+      "currentWert": 12
+    }
+  },
+  "currentSpezies": "0",
+  "spezies": {
+    "0": {
+      id: 0,
+      name: 'Mensch',
+      kosten: 0,
+      geStart: 1,
+      geMax: 4,
+      stStart: 1,
+      stMax: 4,
+      koStart: 1
+    }
+  }
+}
+
+
+
+this.store.update(state => {
+  const spezies = state.spezies[currentSprezies];
+const attribute = {
+ge: {
+...state.attribute.ge,
+currentWert: spezies.geStart
+},
+// TODO: Alle anderen Attribute
+};
+
+// Machtg aus der Liste wieder ein Diciotnary
+const attributeDic = attribute.reduce((dic, item) => {
+dic[item.id] = item;
+
+return dic;
+}, {});
+
+return {
+...state,
+currentSpezies: currentSprezies,
+attribute: attributeDic
+};
+});

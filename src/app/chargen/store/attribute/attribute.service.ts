@@ -10,6 +10,10 @@ export class AttributService {
   }
 
   updateAttribut(attribut: Attribut[]) {
+    console.log('######');
+    console.log(attribut);
+
+    attribut.forEach(a => a.wert = 0);
     this.store.set(attribut);
   }
 

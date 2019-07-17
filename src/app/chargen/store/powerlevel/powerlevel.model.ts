@@ -1,7 +1,7 @@
 import { ID } from '@datorama/akita';
 
 export interface Powerlevel {
-  id: ID;
+  id: string;
   name: string;
   gp: number;
 }

@@ -19,11 +19,13 @@ import {
   SpeziesStore,
   SpeziesQuery,
   PowerlevelStore,
-  PowerlevelService, PowerlevelQuery, FertigkeitStore, FertigkeitQuery, FertigkeitService
+  PowerlevelService, PowerlevelQuery, FertigkeitStore, FertigkeitQuery, FertigkeitService, ChargenStore
 } from './store';
 import { HttpClient } from '@angular/common/http';
 import { Konfiguration } from './store/core/konfiguration';
 import { CommonQuery } from './store/common.query.service';
+import { ChargenService } from './chargen.service';
+import { ChargenQuery } from './store/chargen.query';
 
 
 @NgModule({
@@ -47,14 +49,17 @@ import { CommonQuery } from './store/common.query.service';
     FertigkeitStore,
     FertigkeitQuery,
     FertigkeitService,
-    CommonQuery
+    CommonQuery,
+    ChargenService,
+    ChargenStore,
+    ChargenQuery,
   ]
 })
 
 export class ChargenModule {
   constructor(private http: HttpClient, private powerlevelService: PowerlevelService,
               private speziesService: SpeziesService, private attributService: AttributService,
-              private fertigkeitService: FertigkeitService) {
+              private fertigkeitService: FertigkeitService, private chargenService: ChargenService) {
     this.init();
   }
 
@@ -64,6 +69,8 @@ export class ChargenModule {
       this.speziesService.updateSpezies(res.spezies);
       this.fertigkeitService.updateFertigkeit(res.fertigkeiten);
       this.powerlevelService.updatePowerlevel(res.powerlevel);
+
+      this.chargenService.init(res.attribute, res.powerlevel, res.spezies);
 
     }).catch(e => {
       console.log(e);

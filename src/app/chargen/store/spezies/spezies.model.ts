@@ -12,7 +12,7 @@ import { ID } from '@datorama/akita';
 
 
 export interface Spezies {
-  id: ID;
+  id: string;
   name: string;
   kosten: number;
   attribute: { [key: string]: { start: number; max: number; } };
