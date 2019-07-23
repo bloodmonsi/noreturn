@@ -9,14 +9,14 @@ export class SpeziesService {
   constructor(private store: SpeziesStore, private attributService: AttributService) {
   }
 
-  updateSpezies(spezies: Spezies[]) {
-    this.store.set(spezies);
-    this.store.setActive(spezies[0].id);
-  }
-
-  updateActiveSpezies(currentSprezies: number) {
-    console.log('Spezies_ID :' + currentSprezies);
-    this.store.setActive(currentSprezies);
+  // updateSpezies(spezies: Spezies[]) {
+  //   this.store.set(spezies);
+  //   this.store.setActive(spezies[0].id);
+  // }
+  //
+  // updateActiveSpezies(currentSpezies: number) {
+  //   console.log('Spezies_ID :' + currentSpezies);
+  //   this.store.setActive(currentSpezies);
 
     // spezies[0].chStart
     // this.attributService.setzeStartwerte('ge');
@@ -29,5 +29,5 @@ export class SpeziesService {
     // this.attributService.setzeStartwerte('lo');
     // this.attributService.setzeStartwerte('fa');
     // this.attributService.setzeStartwerte('to');
-  }
+  // }
 }

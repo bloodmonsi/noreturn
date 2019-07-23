@@ -20,16 +20,15 @@ export class AttributeComponent implements OnInit {
   dataColumns: string[];
   // attributeStartwerte$: Spezies;
 
-  constructor(private store: AttributStore, private query: AttributQuery, private service: AttributService, private chargenService: ChargenService, private chargenQuery: ChargenQuery) {
+  constructor(private store: AttributStore, private query: AttributQuery, private service: AttributService,
+              private chargenService: ChargenService, private chargenQuery: ChargenQuery) {
     this.primaryDataSource = new MyAttributeDatasource(this.chargenQuery.selectStartwertePrimaryAttribut());
-    this.secondaryDataSource = new MyAttributeDatasource(this.query.getStartwerteSecondaryAttribut());
+    this.secondaryDataSource = new MyAttributeDatasource(this.chargenQuery.selectStartwerteSecondaryAttribut());
     this.dataColumns = [ 'increaseCosts', 'decreaseCosts', 'name', 'wert', 'maxWert', 'gesamtKosten'];
   }
 
   ngOnInit() {
-    this.primaryAttributes$ = this.query.primaryAttributList$;
-    this.secondaryAttributes$ = this.query.secondaryAttributList$;
-    // this.attributeStartwerte$ = this.query.getStartwerte();
+    this.attributesTotalCosts$ = this.chargenQuery.getAttributKosten();
   }
 
   incrementAttribute(entitieId: string) {
@@ -37,7 +36,7 @@ export class AttributeComponent implements OnInit {
   }
 
   decrementAttribute(entitieId: string) {
-    this.service.decrementAttribut(entitieId);
+    this.chargenService.decrementAttribut(entitieId);
   }
 }
 

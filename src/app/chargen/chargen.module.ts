@@ -65,8 +65,8 @@ export class ChargenModule {
 
   init() {
     this.load().then(res => {
-      this.attributService.updateAttribut(res.attribute);
-      this.speziesService.updateSpezies(res.spezies);
+      // this.attributService.updateAttribut(res.attribute);
+      // this.speziesService.updateSpezies(res.spezies);
       this.fertigkeitService.updateFertigkeit(res.fertigkeiten);
       this.powerlevelService.updatePowerlevel(res.powerlevel);
 

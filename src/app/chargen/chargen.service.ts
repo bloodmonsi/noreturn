@@ -10,7 +10,7 @@ export class ChargenService {
     const powerLevelDic = this.toDiciotnary(powerlevel);
     const speziesDic = this.toDiciotnary(spezies);
     const currentPowerlevel = powerlevel[0].id;
-    const currentSpezies = spezies[2].id;
+    const currentSpezies = spezies[0].id;
 
     this.chargenStore.update(state => {
       const currentSpeziesEntity = speziesDic[currentSpezies];
@@ -18,10 +18,46 @@ export class ChargenService {
       return {
         ...state,
         attribute: {
-          // TODO: Alle anderen Attribute
+          // TODO: evtl. Schleife einbauen
           ge: {
             ...attributeDic.ge,
             wert: currentSpeziesEntity.geStart
+          },
+          st: {
+            ...attributeDic.st,
+            wert: currentSpeziesEntity.stStart
+          },
+          ko: {
+            ...attributeDic.ko,
+            wert: currentSpeziesEntity.koStart
+          },
+          sk: {
+            ...attributeDic.sk,
+            wert: currentSpeziesEntity.skStart
+          },
+          wi: {
+            ...attributeDic.wi,
+            wert: currentSpeziesEntity.wiStart
+          },
+          wa: {
+            ...attributeDic.wa,
+            wert: currentSpeziesEntity.waStart
+          },
+          ch: {
+            ...attributeDic.ch,
+            wert: currentSpeziesEntity.chStart
+          },
+          lo: {
+            ...attributeDic.lo,
+            wert: currentSpeziesEntity.loStart
+          },
+          fa: {
+            ...attributeDic.fa,
+            wert: currentSpeziesEntity.faStart
+          },
+          to: {
+            ...attributeDic.to,
+            wert: currentSpeziesEntity.toStart
           },
         },
         powerlevel: powerLevelDic,
@@ -45,6 +81,42 @@ export class ChargenService {
             ...attributeDic.ge,
             wert: currentSpeziesEntity.geStart
           },
+          st: {
+            ...attributeDic.st,
+            wert: currentSpeziesEntity.stStart
+          },
+          ko: {
+            ...attributeDic.ko,
+            wert: currentSpeziesEntity.koStart
+          },
+          sk: {
+            ...attributeDic.sk,
+            wert: currentSpeziesEntity.skStart
+          },
+          wi: {
+            ...attributeDic.wi,
+            wert: currentSpeziesEntity.wiStart
+          },
+          wa: {
+            ...attributeDic.wa,
+            wert: currentSpeziesEntity.waStart
+          },
+          ch: {
+            ...attributeDic.ch,
+            wert: currentSpeziesEntity.chStart
+          },
+          lo: {
+            ...attributeDic.lo,
+            wert: currentSpeziesEntity.loStart
+          },
+          fa: {
+            ...attributeDic.fa,
+            wert: currentSpeziesEntity.faStart
+          },
+          to: {
+            ...attributeDic.to,
+            wert: currentSpeziesEntity.toStart
+          },
         },
         currentSpezies: speziesId
       };
@@ -60,6 +132,21 @@ export class ChargenService {
           [attributId]: {
             ...state.attribute[attributId],
             wert: state.attribute[attributId].wert + 1
+          },
+        },
+      };
+    });
+  }
+
+  decrementAttribut(attributId: string) {
+    this.chargenStore.update(state => {
+      return {
+        ...state,
+        attribute: {
+          ...state.attribute,
+          [attributId]: {
+            ...state.attribute[attributId],
+            wert: state.attribute[attributId].wert - 1
           },
         },
       };

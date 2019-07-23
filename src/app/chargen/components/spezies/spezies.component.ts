@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ID } from '@datorama/akita';
-import { SpeziesQuery, SpeziesStore, Spezies, SpeziesService } from '../../store';
+import { SpeziesQuery, SpeziesStore, Spezies, SpeziesService, ChargenStore } from '../../store';
 import { Observable } from 'rxjs';
+import { ChargenService } from '../../chargen.service';
+import { ChargenQuery } from '../../store/chargen.query';
 
 @Component({
   selector: 'app-spezies',
@@ -9,24 +11,24 @@ import { Observable } from 'rxjs';
   styleUrls: ['./spezies.component.css']
 })
 export class SpeziesComponent implements OnInit {
-  currentSpezies: ID;
+  currentSpezies: string;
   speziesList$: Observable<Spezies[]>;
 
-  constructor(private store: SpeziesStore, private query: SpeziesQuery, private service: SpeziesService) {
+  constructor(private chargenService: ChargenService, private chargenQuery: ChargenQuery) {
   }
 
   ngOnInit() {
-    this.speziesList$ = this.query.selectAll();
-    this.query.selectActiveId().subscribe(selectedId => {
+    this.speziesList$ = this.chargenQuery.getSpeziesList();
+
+    this.chargenQuery.getCurrentSpezies().subscribe(selectedId => {
       if (selectedId != null && selectedId !== this.currentSpezies) {
-        this.currentSpezies = selectedId;
-      }
+            this.currentSpezies = selectedId;
+          }
     });
   }
 
-  speziesChanged(currentSpezies: number) {
-    //this.store.setActive(currentSpezies);
-    this.service.updateActiveSpezies(currentSpezies);
+  speziesChanged(currentSpezies: string) {
+    this.chargenService.selektiereSpezies(currentSpezies);
   }
 
 }
