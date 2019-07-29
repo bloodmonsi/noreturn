@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PowerlevelStore } from '../../store/index';
-import { PowerlevelQuery } from '../../store/index';
-import { CommonQuery } from '../../store/common.query.service';
-import { tap } from 'rxjs/operators';
+import {ChargenQuery} from '../../store/chargen.query';
 
 @Component({
   selector: 'app-generation-points',
@@ -16,7 +14,7 @@ export class GenerationPointsComponent implements OnInit {
   maximumGp$: Observable<number>;
   verbleibendeGp$: Observable<number>;
 
-  constructor(private store: PowerlevelStore, private powerlevelQuery: PowerlevelQuery, private commonQuery: CommonQuery) {
+  constructor(private store: PowerlevelStore, private chargenQuery: ChargenQuery) {
   }
 
   ngOnInit() {
@@ -24,8 +22,10 @@ export class GenerationPointsComponent implements OnInit {
     // this.maximumPoints = this.chargenservice.getMaximumPoints();
 
     // setTimeout(() => {
-      this.maximumGp$ = this.powerlevelQuery.getMaximumGp$.pipe(tap(value => console.log('max gp', value)));
-      this.verbleibendeGp$ = this.commonQuery.getVerbleibendeGp().pipe(tap(value => console.log('verbleibende gp', value)));
+    this.maximumGp$ = this.chargenQuery.getMaximaleGp();
+    this.verbleibendeGp$ = this.chargenQuery.getVerbleibendeGp();
+    //   this.maximumGp$ = this.powerlevelQuery.getMaximumGp$.pipe(tap(value => console.log('max gp', value)));
+    //   this.verbleibendeGp$ = this.commonQuery.getVerbleibendeGp().pipe(tap(value => console.log('verbleibende gp', value)));
     // });
 
   }

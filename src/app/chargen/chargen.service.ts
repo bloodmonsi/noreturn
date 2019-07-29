@@ -68,6 +68,15 @@ export class ChargenService {
     });
   }
 
+  selektierePowerlevel(powerlevelId: string) {
+    this.chargenStore.update(state => {
+      return {
+        ...state,
+        currentPowerlevel: powerlevelId
+      };
+    });
+  }
+
   selektiereSpezies(speziesId: string) {
     this.chargenStore.update(state => {
       const attributeDic = state.attribute;
