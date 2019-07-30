@@ -10,7 +10,6 @@ import { ID } from '@datorama/akita';
 //   }
 // }
 
-
 export interface Spezies {
   id: string;
   name: string;

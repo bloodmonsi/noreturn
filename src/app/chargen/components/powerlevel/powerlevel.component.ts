@@ -11,7 +11,7 @@ import {ChargenService} from '../../chargen.service';
   styleUrls: ['./powerlevel.component.css']
 })
 export class PowerlevelComponent implements OnInit {
-  currentPowerlevel: ID;
+  currentPowerlevel: string;
   powerlevels$: Observable<Powerlevel[]>;
 
   constructor(private chargenQuery: ChargenQuery, private chargenService: ChargenService) {}
