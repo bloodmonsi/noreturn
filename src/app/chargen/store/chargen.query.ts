@@ -58,6 +58,13 @@ export class ChargenQuery extends Query<ChargenState> {
     });
   }
 
+  getFertigkeitenList() {
+    return this.select(state => {
+      const fertigkeiten = Object.values(state.fertigkeiten);
+      return fertigkeiten
+    });
+  }
+
   getCurrentSpezies() {
     return this.select(state => {
       return state.currentSpezies;

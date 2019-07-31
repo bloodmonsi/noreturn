@@ -1,35 +1,21 @@
-import { Injectable } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { PowerlevelQuery } from './powerlevel/powerlevel.query.service';
-import { SpeziesQuery } from './spezies/spezies.query.service';
-
-@Injectable()
-export class CommonQuery {
-
-
-  constructor(private speziesQuery: SpeziesQuery, private powerlevelQuery: PowerlevelQuery) {
-  }
-
-  speziesGp$: Observable<number>;
-  maximumGp$: Observable<number>;
-
-
-  getVerbleibendeGp() {
-    this.speziesGp$ = this.speziesQuery.getSpeziesGp$;
-    this.maximumGp$ = this.powerlevelQuery.getMaximumGp$;
-    const combined = combineLatest(this.maximumGp$, this.speziesGp$);
-    return combined.pipe(map(([valueStream1, valueStream2]) => {
-      console.log({
-        valueStream1,
-        valueStream2
-      });
-
-      // return valueStream1 - valueStream2;
-      // ToDO
-      return (valueStream1 || 0) - (valueStream2 || 0);
-    }));
-  }
-
-
-}
+// import { Injectable } from '@angular/core';
+// import { combineLatest, Observable } from 'rxjs';
+// import { map } from 'rxjs/operators';
+// import { PowerlevelQuery } from './powerlevel/powerlevel.query.service';
+// import { SpeziesQuery } from './spezies/spezies.query.service';
+//
+// @Injectable()
+// export class CommonQuery {
+//
+//
+//   constructor(private speziesQuery: SpeziesQuery, private powerlevelQuery: PowerlevelQuery) {
+//   }
+//
+//   speziesGp$: Observable<number>;
+//   maximumGp$: Observable<number>;
+//
+//
+//
+//
+//
+// }

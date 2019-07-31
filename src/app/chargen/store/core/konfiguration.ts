@@ -5,8 +5,8 @@ import { Attribut } from '../attribute/attribute.model';
 
 export interface Konfiguration {
   powerlevel: Powerlevel[];
-  defaultPowerlevel: number;
-  defaultSpezies: number;
+  defaultPowerlevel: string;
+  defaultSpezies: string;
   spezies: Spezies[];
   fertigkeiten: Fertigkeit[];
   attribute: Attribut[];

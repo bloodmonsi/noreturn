@@ -1,0 +1,59 @@
+{
+  "powerlevel": {
+    "0": {
+      "id": 0,
+      "name": "Survival",
+      "gp": 400,
+      "newdollar": 100,
+      "maxAttributGp": 140,
+      "note": "Corebook; S.77"
+    },
+    "1": {
+      "id": 1,
+      "name": "Standard",
+      "gp": 450,
+      "newdollar": 500,
+      "maxAttributGp": 180,
+      "note": "Corebook; S.77"
+    },
+    "2": {
+      "id": 2,
+      "name": "Supirior",
+      "gp": 500,
+      "newdollar": 5000,
+      "maxAttributGp": 220,
+      "note": "Corebook; S.77"
+    }
+  },
+  "currentPowerlevel": "1",
+
+}
+
+
+
+  "attribute": {
+    "ge": {
+      "id": 'ge',
+      "name": 'Geschick',
+      "kosten": 10,
+      "geistig": 'false',
+      "primaer": true,
+      "note": 'Corebook; S.XX',
+      "currentWert": 12
+    }
+  },
+  "currentSpezies": "0",
+  "spezies": {
+    "0": {
+      id: 0,
+      name: 'Mensch',
+      kosten: 0,
+      geStart: 1,
+      geMax: 4,
+      stStart: 1,
+      stMax: 4,
+      koStart: 1
+    }
+  }
+}
+

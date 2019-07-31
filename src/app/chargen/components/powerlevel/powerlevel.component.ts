@@ -17,13 +17,6 @@ export class PowerlevelComponent implements OnInit {
   constructor(private chargenQuery: ChargenQuery, private chargenService: ChargenService) {}
 
   ngOnInit() {
-    // this.powerlevels$ = this.query.selectAll();
-    // // todo: unsubscribe weil Memoryleak
-    // this.query.selectActiveId().subscribe(selectedId => {
-    //   if (selectedId != null && selectedId !== this.currentPowerlevel) {
-    //     this.currentPowerlevel = selectedId;
-    //   }
-    // });
     this.powerlevels$ = this.chargenQuery.getPowerlevelList();
     this.chargenQuery.getCurrentPowerlevel().subscribe(selectedId => {
       if (selectedId != null && selectedId !== this.currentPowerlevel) {
@@ -33,7 +26,6 @@ export class PowerlevelComponent implements OnInit {
   }
 
   powerlevelChanged(currentPowerlevel: string) {
-    // this.store.setActive(currentPowerlevel);
     this.chargenService.selektierePowerlevel(currentPowerlevel);
   }
 }

@@ -1710,30 +1710,3 @@
     }
   ]
 }
-//{
-//  "attribute": {
-//    "ge": {
-//      "id": 'ge',
-//      "name": 'Geschick',
-//      "kosten": 10,
-//      "geistig": 'false',
-//      "primaer": true,
-//      "note": 'Corebook; S.XX',
-//      "currentWert": 12
-//    }
-//  },
-//  "currentSpezies": "0",
-//  "spezies": {
-//    "0": {
-//      id: 0,
-//      name: 'Mensch',
-//      kosten: 0,
-//      geStart: 1,
-//      geMax: 4,
-//      stStart: 1,
-//      stMax: 4,
-//      koStart: 1
-//    }
-//  }
-//}
-

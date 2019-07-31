@@ -1,15 +1,16 @@
-import { Attribut, ChargenStore, Powerlevel, Spezies } from './store';
+import {Attribut, ChargenStore, Fertigkeit, Powerlevel, Spezies} from './store';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ChargenService {
   constructor(private chargenStore: ChargenStore) {}
 
-  init(attribute: Attribut[], powerlevel: Powerlevel[], spezies: Spezies[]) {
+  init(attribute: Attribut[], powerlevel: Powerlevel[], spezies: Spezies[], fertigkeiten: Fertigkeit[]) {
     const attributeDic = this.toDiciotnary(attribute);
     const powerLevelDic = this.toDiciotnary(powerlevel);
     const speziesDic = this.toDiciotnary(spezies);
-    const currentPowerlevel = powerlevel[0].id;
+    const fertigkeitenDic = this.toDiciotnary(fertigkeiten);
+    const currentPowerlevel = powerlevel[1].id;
     const currentSpezies = spezies[0].id;
 
     this.chargenStore.update(state => {
@@ -61,6 +62,7 @@ export class ChargenService {
           },
         },
         powerlevel: powerLevelDic,
+        fertigkeiten: fertigkeitenDic,
         spezies: speziesDic,
         currentPowerlevel: currentPowerlevel,
         currentSpezies: currentSpezies

@@ -3,13 +3,15 @@ import { Injectable } from '@angular/core';
 import { Attribut } from './attribute/attribute.model';
 import { Spezies } from './spezies/spezies.model';
 import { Powerlevel } from './powerlevel/powerlevel.model';
+import { Fertigkeit } from './fertigkeiten/fertigkeiten.model';
 
 export interface ChargenState {
   attribute: { [id: string]: Attribut };
-  currentPowerlevel: string;
+  fertigkeiten: { [id: string]: Fertigkeit };
   powerlevel: { [id: string]: Powerlevel };
-  currentSpezies: string;
+  currentPowerlevel: string;
   spezies: { [id: string]: Spezies };
+  currentSpezies: string;
 }
 
 export function createInitialState(): ChargenState {
@@ -18,7 +20,8 @@ export function createInitialState(): ChargenState {
     currentPowerlevel: null,
     powerlevel: {},
     currentSpezies: null,
-    spezies: {}
+    spezies: {},
+    fertigkeiten: {}
   };
 }
 

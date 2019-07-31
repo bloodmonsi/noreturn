@@ -12,8 +12,6 @@ import { ChargenService } from '../../chargen.service';
   styleUrls: ['./attribute.component.css']
 })
 export class AttributeComponent implements OnInit {
-  primaryAttributes$: Observable<Attribut[]>;
-  secondaryAttributes$: Observable<Attribut[]>;
   attributesTotalCosts$;
   primaryDataSource: MyAttributeDatasource;
   secondaryDataSource: MyAttributeDatasource;

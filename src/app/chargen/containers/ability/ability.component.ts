@@ -3,6 +3,8 @@ import { DataSource } from '@angular/cdk/table';
 import { Attribut, FertigkeitQuery, FertigkeitStore } from '../../store/index';
 import { Observable } from 'rxjs';
 import { Fertigkeit } from '../../store/fertigkeiten/fertigkeiten.model';
+import { ChargenQuery } from '../../store/chargen.query';
+import { ChargenService } from '../../chargen.service';
 
 @Component({
   selector: 'app-fertigkeiten',
@@ -15,13 +17,14 @@ export class AbilityComponent implements OnInit {
   dataSource: MyAbilityDatasource;
   dataColumns: string[];
 
-  constructor(private store: FertigkeitStore, private query: FertigkeitQuery) {
-    this.dataSource = new MyAbilityDatasource(this.query.selectAll());
+  constructor(private store: FertigkeitStore, private query: FertigkeitQuery, private chargenQuery: ChargenQuery,
+              private chargenService: ChargenService) {
+    this.dataSource = new MyAbilityDatasource(this.chargenQuery.getFertigkeitenList);
     this.dataColumns = ['increaseCosts', 'decreaseCosts', 'name', 'attribut', 'wert', 'maxWert', 'gesamtKosten'];
   }
 
   ngOnInit() {
-    this.abilityList$ = this.query.selectAll();
+    this.abilityList$ = this.chargenQuery.getFertigkeitenList();
     // this.abilitiesTotalCosts$ = this.store.select(fromStore.ABILITYSELECTORS.getAbilitiesTotalCosts);
   }
 
