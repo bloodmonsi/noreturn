@@ -164,6 +164,36 @@ export class ChargenService {
     });
   }
 
+  incrementFertigkeit(fertigkeitId: string) {
+    this.chargenStore.update(state => {
+      return {
+        ...state,
+        fertigkeiten: {
+          ...state.fertigkeiten,
+          [fertigkeitId]: {
+            ...state.fertigkeiten[fertigkeitId],
+            wert: state.fertigkeiten[fertigkeitId].wert + 1
+          },
+        },
+      };
+    });
+  }
+
+  decrementFertigkeit(fertigkeitId: string) {
+    this.chargenStore.update(state => {
+      return {
+        ...state,
+        fertigkeiten: {
+          ...state.fertigkeiten,
+          [fertigkeitId]: {
+            ...state.fertigkeiten[fertigkeitId],
+            wert: state.fertigkeiten[fertigkeitId].wert -1
+          },
+        },
+      };
+    });
+  }
+
   private toDiciotnary<T>(liste: T[]) {
     return liste.reduce((dic, item: any) => {
       dic[item.id] = item;

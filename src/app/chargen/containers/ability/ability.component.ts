@@ -17,23 +17,22 @@ export class AbilityComponent implements OnInit {
   dataSource: MyAbilityDatasource;
   dataColumns: string[];
 
-  constructor(private store: FertigkeitStore, private query: FertigkeitQuery, private chargenQuery: ChargenQuery,
-              private chargenService: ChargenService) {
-    this.dataSource = new MyAbilityDatasource(this.chargenQuery.getFertigkeitenList);
+  constructor(private chargenQuery: ChargenQuery, private chargenService: ChargenService) {
+    this.dataSource = new MyAbilityDatasource(this.chargenQuery.getFertigkeitenList());
     this.dataColumns = ['increaseCosts', 'decreaseCosts', 'name', 'attribut', 'wert', 'maxWert', 'gesamtKosten'];
   }
 
   ngOnInit() {
-    this.abilityList$ = this.chargenQuery.getFertigkeitenList();
+    // this.abilityList$ = this.chargenQuery.getFertigkeitenList();
     // this.abilitiesTotalCosts$ = this.store.select(fromStore.ABILITYSELECTORS.getAbilitiesTotalCosts);
   }
 
-  incrementAbility(entitieId: number) {
-    // this.store.dispatch(new fromStore.IncrementAbilityAction(entitieId));
+  incrementFertigkeit(fertigkeitId: string) {
+    this.chargenService.incrementFertigkeit(fertigkeitId);
   }
 
-  decrementAbility(entitieId: number) {
-    // this.store.dispatch(new fromStore.DecrementAbilityAction(entitieId));
+  decrementFertigkeit(fertigkeitId: string) {
+    this.chargenService.decrementFertigkeit(fertigkeitId);
   }
 
 }

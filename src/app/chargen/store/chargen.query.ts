@@ -61,7 +61,15 @@ export class ChargenQuery extends Query<ChargenState> {
   getFertigkeitenList() {
     return this.select(state => {
       const fertigkeiten = Object.values(state.fertigkeiten);
-      return fertigkeiten
+      return fertigkeiten.map(fertigkeit => {
+        const wert = 0;
+
+        return {
+          ...fertigkeit,
+          wert,
+          gesamtKosten: wert ? wert * 3 : 0
+        };
+      });
     });
   }
 
