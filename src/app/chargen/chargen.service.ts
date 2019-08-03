@@ -9,7 +9,7 @@ export class ChargenService {
     const attributeDic = this.toDiciotnary(attribute);
     const powerLevelDic = this.toDiciotnary(powerlevel);
     const speziesDic = this.toDiciotnary(spezies);
-    const fertigkeitenDic = this.toDiciotnary(fertigkeiten);
+    // const fertigkeitenDic = this.toDiciotnary(fertigkeiten);
     const currentPowerlevel = powerlevel[1].id;
     const currentSpezies = spezies[0].id;
 
@@ -62,7 +62,13 @@ export class ChargenService {
           },
         },
         powerlevel: powerLevelDic,
-        fertigkeiten: fertigkeitenDic,
+        // fertigkeiten: fertigkeitenDic,
+        fertigkeiten: this.toDiciotnary(fertigkeiten.map(fertigkeiten_ => {
+          return {
+            ...fertigkeiten_,
+            wert: 0
+          };
+        })),
         spezies: speziesDic,
         currentPowerlevel: currentPowerlevel,
         currentSpezies: currentSpezies
@@ -187,7 +193,7 @@ export class ChargenService {
           ...state.fertigkeiten,
           [fertigkeitId]: {
             ...state.fertigkeiten[fertigkeitId],
-            wert: state.fertigkeiten[fertigkeitId].wert -1
+            wert: state.fertigkeiten[fertigkeitId].wert - 1
           },
         },
       };

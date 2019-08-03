@@ -14,7 +14,7 @@ export class GenerationPointsComponent implements OnInit {
   maximumGp$: Observable<number>;
   verbleibendeGp$: Observable<number>;
 
-  constructor(private store: PowerlevelStore, private chargenQuery: ChargenQuery) {
+  constructor(private chargenQuery: ChargenQuery) {
   }
 
   ngOnInit() {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
-import { Attribut, FertigkeitQuery, FertigkeitStore } from '../../store/index';
 import { Observable } from 'rxjs';
 import { Fertigkeit } from '../../store/fertigkeiten/fertigkeiten.model';
 import { ChargenQuery } from '../../store/chargen.query';
@@ -12,7 +11,6 @@ import { ChargenService } from '../../chargen.service';
   styleUrls: ['./ability.component.css']
 })
 export class AbilityComponent implements OnInit {
-  abilityList$: Observable<Fertigkeit[]>;
   abilitiesTotalCosts$;
   dataSource: MyAbilityDatasource;
   dataColumns: string[];
@@ -23,8 +21,7 @@ export class AbilityComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.abilityList$ = this.chargenQuery.getFertigkeitenList();
-    // this.abilitiesTotalCosts$ = this.store.select(fromStore.ABILITYSELECTORS.getAbilitiesTotalCosts);
+    this.abilitiesTotalCosts$ = this.chargenQuery.getFertigkeitenKosten();
   }
 
   incrementFertigkeit(fertigkeitId: string) {

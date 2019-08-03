@@ -27,16 +27,20 @@ export class ChargenQuery extends Query<ChargenState> {
   getVerbleibendeGp() {
     const speziesGp = this.getSpeziesKosten();
     const maximumGp = this.getMaximaleGp();
-    const combined = combineLatest(maximumGp, speziesGp);
-    return combined.pipe(map(([valueStream1, valueStream2]) => {
+    const attributeGp = this.getAttributKosten();
+    const fertigkeitenGp = this.getFertigkeitenKosten();
+    const combined = combineLatest(maximumGp, speziesGp, attributeGp, fertigkeitenGp);
+    return combined.pipe(map(([valueStream1, valueStream2, valueStream3, valueStream4]) => {
       console.log({
         valueStream1,
-        valueStream2
+        valueStream2,
+        valueStream3,
+        valueStream4
       });
 
       // return valueStream1 - valueStream2;
       // ToDO
-      return (valueStream1 || 0) - (valueStream2 || 0);
+      return (valueStream1 || 0) - (valueStream2 || 0) - (valueStream3 || 0) - (valueStream4 || 0);
     }));
   }
 
@@ -67,7 +71,7 @@ export class ChargenQuery extends Query<ChargenState> {
         return {
           ...fertigkeit,
           wert,
-          gesamtKosten: wert ? wert * 3 : 0
+          gesamtKosten: 0
         };
       });
     });
@@ -94,7 +98,14 @@ export class ChargenQuery extends Query<ChargenState> {
   getAttributKosten() {
     return this.select(state => {
       const attribute = Object.values(state.attribute);
-       return attribute.reduce((current, item) => current + (item.kosten * item.wert), 0);
+      return attribute.reduce((current, item) => current + (item.kosten * item.wert), 0);
+    });
+  }
+
+  getFertigkeitenKosten() {
+    return this.select(state => {
+      const fertigkeiten = Object.values(state.fertigkeiten);
+      return fertigkeiten.reduce((current, item) => current + (3 * item.wert), 0);
     });
   }
 

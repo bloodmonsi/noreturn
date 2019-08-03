@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
-import { AttributQuery, AttributService, AttributStore, Spezies } from '../../store/index';
 import { Observable } from 'rxjs';
 import { Attribut } from '../../store/attribute/attribute.model';
 import { ChargenQuery } from '../../store/chargen.query';
@@ -18,8 +17,7 @@ export class AttributeComponent implements OnInit {
   dataColumns: string[];
   // attributeStartwerte$: Spezies;
 
-  constructor(private store: AttributStore, private query: AttributQuery, private service: AttributService,
-              private chargenService: ChargenService, private chargenQuery: ChargenQuery) {
+  constructor(private chargenService: ChargenService, private chargenQuery: ChargenQuery) {
     this.primaryDataSource = new MyAttributeDatasource(this.chargenQuery.selectStartwertePrimaryAttribut());
     this.secondaryDataSource = new MyAttributeDatasource(this.chargenQuery.selectStartwerteSecondaryAttribut());
     this.dataColumns = [ 'increaseCosts', 'decreaseCosts', 'name', 'wert', 'maxWert', 'gesamtKosten'];

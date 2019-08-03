@@ -12,14 +12,7 @@ import { AttributeTableComponent } from './components/attribute-table/attribute-
 import { OverviewComponent } from './containers/overview/overview.component';
 import { CharDetailsComponent } from './components/char-details/char-details.component';
 import {
-  SpeziesService,
-  AttributService,
-  AttributStore,
-  AttributQuery,
-  SpeziesStore,
-  SpeziesQuery,
-  PowerlevelStore,
-  PowerlevelService, PowerlevelQuery, FertigkeitStore, FertigkeitQuery, FertigkeitService, ChargenStore
+  ChargenStore
 } from './store';
 import { HttpClient } from '@angular/common/http';
 import { Konfiguration } from './store/core/konfiguration';
@@ -36,10 +29,6 @@ import { ChargenQuery } from './store/chargen.query';
   declarations: [ChargenComponent, GenerationPointsComponent, PowerlevelComponent, SpeziesComponent, AbilityComponent,
     OverviewComponent, CharDetailsComponent, AttributeComponent, AttributeTableComponent],
   providers: [
-    AttributStore,
-    SpeziesStore,
-    PowerlevelStore,
-    FertigkeitStore,
     ChargenService,
     ChargenStore,
     ChargenQuery,
