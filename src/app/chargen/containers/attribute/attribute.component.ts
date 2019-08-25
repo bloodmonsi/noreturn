@@ -21,11 +21,10 @@ export class AttributeComponent implements OnInit {
     this.primaryDataSource = new MyAttributeDatasource(this.chargenQuery.selectStartwertePrimaryAttribut());
     this.secondaryDataSource = new MyAttributeDatasource(this.chargenQuery.selectStartwerteSecondaryAttribut());
     this.dataColumns = [ 'increaseCosts', 'decreaseCosts', 'name', 'wert', 'maxWert', 'gesamtKosten'];
-  }
-
-  ngOnInit() {
     this.attributesTotalCosts$ = this.chargenQuery.getAttributKosten();
   }
+
+  ngOnInit() {}
 
   incrementAttribute(entitieId: string) {
     this.chargenService.incrementAttribut(entitieId);

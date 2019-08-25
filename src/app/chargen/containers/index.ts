@@ -7,3 +7,4 @@ export const CONTAINERS = [AbilityComponent, OverviewComponent];
 export * from './ability';
 // export * from './attribute';
 export * from './overview';
+// export * from './biologische-abnormitaeten';

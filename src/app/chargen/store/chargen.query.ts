@@ -98,7 +98,7 @@ export class ChargenQuery extends Query<ChargenState> {
   getAttributKosten() {
     return this.select(state => {
       const attribute = Object.values(state.attribute);
-      return attribute.reduce((current, item) => current + (item.kosten * item.wert), 0);
+      return attribute.reduce((current, item) => current + item.gesamtKosten, 0);
     });
   }
 

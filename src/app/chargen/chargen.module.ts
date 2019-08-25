@@ -18,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { Konfiguration } from './store/core/konfiguration';
 import { ChargenService } from './chargen.service';
 import { ChargenQuery } from './store/chargen.query';
+import { BiologischeAbnormitaetenComponent } from './containers/biologische-abnormitaeten/biologische-abnormitaeten.component';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { ChargenQuery } from './store/chargen.query';
     SharedModule,
   ],
   declarations: [ChargenComponent, GenerationPointsComponent, PowerlevelComponent, SpeziesComponent, AbilityComponent,
-    OverviewComponent, CharDetailsComponent, AttributeComponent, AttributeTableComponent],
+    OverviewComponent, CharDetailsComponent, AttributeComponent, AttributeTableComponent, BiologischeAbnormitaetenComponent],
   providers: [
     ChargenService,
     ChargenStore,

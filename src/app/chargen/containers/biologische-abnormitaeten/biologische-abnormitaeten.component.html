@@ -1,0 +1,6 @@
+<mat-select *ngIf="abnormitaetenList$ | async as values" id="abnormitaeten" name="abnormitaeten" (ngModelChange)="abnormitatenChanged($event)"
+            [(ngModel)]="currentSpezies">
+  <mat-option *ngFor="let value of values" [value]="value.id">
+    {{ value.name }}
+  </mat-option>
+</mat-select>

@@ -3,6 +3,7 @@ import { ChargenComponent } from './chargen.component';
 import { OverviewComponent } from './containers/overview/overview.component';
 import { AttributeComponent } from './containers/attribute/attribute.component';
 import { AbilityComponent } from './containers/ability/ability.component';
+import { BiologischeAbnormitaetenComponent } from './containers/biologische-abnormitaeten/biologische-abnormitaeten.component';
 
 const routes: Route[] = [
   {
@@ -20,6 +21,10 @@ const routes: Route[] = [
       {
         path: 'ability',
         component: AbilityComponent
+      },
+      {
+        path: 'abnormitaeten',
+        component: BiologischeAbnormitaetenComponent
       }
     ]
   }
