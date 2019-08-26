@@ -66,12 +66,12 @@ export class ChargenQuery extends Query<ChargenState> {
     return this.select(state => {
       const fertigkeiten = Object.values(state.fertigkeiten);
       return fertigkeiten.map(fertigkeit => {
-        const wert = 0;
+        // const wert = 0;
 
         return {
           ...fertigkeit,
-          wert,
-          gesamtKosten: 0
+          wert: fertigkeit.wert,
+          gesamtKosten: fertigkeit.wert !== 0 ? fertigkeit.wert * 4 : 0
         };
       });
     });
@@ -96,17 +96,22 @@ export class ChargenQuery extends Query<ChargenState> {
   }
 
   getAttributKosten() {
-    return this.select(state => {
-      const attribute = Object.values(state.attribute);
+    return combineLatest(this.selectStartwertePrimaryAttribut(),this.selectStartwerteSecondaryAttribut()).pipe(map((
+      [prim, sec]
+    ) => {
+      const attribute = [...prim, ...sec];
+
       return attribute.reduce((current, item) => current + item.gesamtKosten, 0);
-    });
+    }));
+
   }
 
   getFertigkeitenKosten() {
-    return this.select(state => {
-      const fertigkeiten = Object.values(state.fertigkeiten);
-      return fertigkeiten.reduce((current, item) => current + (3 * item.wert), 0);
-    });
+    return combineLatest(this.getFertigkeitenList()).pipe(map((
+      [fertigkeiten]
+    ) => {
+      return fertigkeiten.reduce((current, item) => current + item.gesamtKosten, 0);
+    }));
   }
 
   selectStartwertePrimaryAttribut() {

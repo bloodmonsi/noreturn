@@ -18,10 +18,11 @@ export class AbilityComponent implements OnInit {
   constructor(private chargenQuery: ChargenQuery, private chargenService: ChargenService) {
     this.dataSource = new MyAbilityDatasource(this.chargenQuery.getFertigkeitenList());
     this.dataColumns = ['increaseCosts', 'decreaseCosts', 'name', 'attribut', 'wert', 'maxWert', 'gesamtKosten'];
+    this.abilitiesTotalCosts$ = this.chargenQuery.getFertigkeitenKosten();
   }
 
   ngOnInit() {
-    this.abilitiesTotalCosts$ = this.chargenQuery.getFertigkeitenKosten();
+
   }
 
   incrementFertigkeit(fertigkeitId: string) {

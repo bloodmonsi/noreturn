@@ -15,7 +15,6 @@ export class AttributeComponent implements OnInit {
   primaryDataSource: MyAttributeDatasource;
   secondaryDataSource: MyAttributeDatasource;
   dataColumns: string[];
-  // attributeStartwerte$: Spezies;
 
   constructor(private chargenService: ChargenService, private chargenQuery: ChargenQuery) {
     this.primaryDataSource = new MyAttributeDatasource(this.chargenQuery.selectStartwertePrimaryAttribut());
