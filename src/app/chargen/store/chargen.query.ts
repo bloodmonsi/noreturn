@@ -96,7 +96,7 @@ export class ChargenQuery extends Query<ChargenState> {
   }
 
   getAttributKosten() {
-    return combineLatest(this.selectStartwertePrimaryAttribut(),this.selectStartwerteSecondaryAttribut()).pipe(map((
+    return combineLatest(this.selectStartwertePrimaryAttribut(), this.selectStartwerteSecondaryAttribut()).pipe(map((
       [prim, sec]
     ) => {
       const attribute = [...prim, ...sec];
@@ -132,7 +132,7 @@ export class ChargenQuery extends Query<ChargenState> {
           ...attribut,
           wert,
           maxWert,
-          gesamtKosten: wert !== startwert ? (wert - 1) * attribut.kosten : 0
+          gesamtKosten: wert > startwert ? (wert - startwert) * attribut.kosten : 0
         };
       });
     });
@@ -156,7 +156,7 @@ export class ChargenQuery extends Query<ChargenState> {
           ...attribut,
           wert,
           maxWert,
-          gesamtKosten: wert !== startwert ? (wert - 1) * attribut.kosten : 0
+          gesamtKosten: wert > startwert ? (wert - startwert) * attribut.kosten : 0
         };
       });
     });
