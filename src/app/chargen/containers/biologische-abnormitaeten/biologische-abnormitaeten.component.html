@@ -1,6 +1,61 @@
-<mat-select *ngIf="abnormitaetenList$ | async as values" id="abnormitaeten" name="abnormitaeten" (ngModelChange)="abnormitatenChanged($event)"
-            [(ngModel)]="currentSpezies">
-  <mat-option *ngFor="let value of values" [value]="value.id">
-    {{ value.name }}
-  </mat-option>
-</mat-select>
+<div class="bob">
+  <div><fieldset>
+    <legend>Biologische Abnormitäten</legend>
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="increaseCosts">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button style="background: transparent"
+                  (click)="incrementAbnormitaeten(row.id)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="decreaseCosts">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button style="background: transparent"
+                  (click)="decrementAbnormitaeten(row.id)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>
+          ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.id }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>
+          Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.name }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="wert">
+        <mat-header-cell *matHeaderCellDef>
+          Wert
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.wert }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="kosten">
+        <mat-header-cell *matHeaderCellDef>
+          Kosten
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.kosten }}
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="dataColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: dataColumns;"></mat-row>
+    </mat-table>
+
+    <div class="kosten">GP-Kosten Bereich: {{ abnormitaetenTotalCosts$ | async }}</div>
+  </fieldset></div>
+</div>

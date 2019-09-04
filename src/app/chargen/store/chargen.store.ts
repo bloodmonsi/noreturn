@@ -12,6 +12,7 @@ export interface ChargenState {
   currentPowerlevel: string;
   spezies: { [id: string]: Spezies };
   currentSpezies: string;
+  abnormitaeten: { [id: string]: Abnormitaeten };
 }
 
 export function createInitialState(): ChargenState {
@@ -21,7 +22,8 @@ export function createInitialState(): ChargenState {
     powerlevel: {},
     currentSpezies: null,
     spezies: {},
-    fertigkeiten: {}
+    fertigkeiten: {},
+    abnormitaeten: {}
   };
 }
 
@@ -31,4 +33,16 @@ export class ChargenStore extends Store<ChargenState>  {
   constructor() {
     super(createInitialState());
   }
+}
+
+export interface Abnormitaeten {
+  id: string;
+  name: string;
+  kosten: number;
+  mod: boolean;
+  input: boolean;
+  input2: boolean;
+  mehrfach: boolean;
+  organismusMod: number;
+  psycheMod: number;
 }

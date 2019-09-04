@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { ChargenState, ChargenStore } from './chargen.store';
-import { Query } from '@datorama/akita';
+import {Injectable} from '@angular/core';
+import {ChargenState, ChargenStore} from './chargen.store';
+import {Query} from '@datorama/akita';
 import {combineLatest} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -66,12 +66,23 @@ export class ChargenQuery extends Query<ChargenState> {
     return this.select(state => {
       const fertigkeiten = Object.values(state.fertigkeiten);
       return fertigkeiten.map(fertigkeit => {
-        // const wert = 0;
 
         return {
           ...fertigkeit,
           wert: fertigkeit.wert,
           gesamtKosten: fertigkeit.wert !== 0 ? fertigkeit.wert * 4 : 0
+        };
+      });
+    });
+  }
+
+  getAbnormitaetenList() {
+    return this.select(state => {
+      const abnormitaeten = Object.values(state.abnormitaeten);
+      return abnormitaeten.map(abnormitaet => {
+
+        return {
+          ...abnormitaet,
         };
       });
     });
