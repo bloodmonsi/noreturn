@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MyAbilityDatasource} from '../ability';
 import {ChargenQuery} from '../../store/chargen.query';
 import {ChargenService} from '../../chargen.service';
 import {DataSource} from '@angular/cdk/table';
@@ -18,8 +17,8 @@ export class BiologischeAbnormitaetenComponent implements OnInit {
 
   constructor(private chargenQuery: ChargenQuery, private chargenService: ChargenService) {
     this.dataSource = new MyAbilityDatasource(this.chargenQuery.getAbnormitaetenList());
-    this.dataColumns = ['increaseCosts', 'decreaseCosts', 'name', 'wert', 'gesamtKosten'];
-    // this.abnormitaetenTotalCosts$ = this.chargenQuery.getAbnormitaetenKosten();
+    this.dataColumns = ['name', 'kosten'];
+    this.abnormitaetenTotalCosts$ = this.chargenQuery.getAbnormitaetenKosten();
   }
 
   ngOnInit() {

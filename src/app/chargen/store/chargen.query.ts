@@ -1,14 +1,28 @@
-import {Injectable} from '@angular/core';
-import {ChargenState, ChargenStore} from './chargen.store';
-import {Query} from '@datorama/akita';
-import {combineLatest} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { ChargenState, ChargenStore } from './chargen.store';
+import { Query } from '@datorama/akita';
+import { combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ChargenQuery extends Query<ChargenState> {
   constructor(chargenStore: ChargenStore) {
     super(chargenStore);
   }
+
+  // getWerteFuerPdf() {
+  //   return this.select(state => {
+  //     const attribute = Object.values(state.attribute).filter(attribute_ => attribute_.primaer);
+  //
+  //     return attribute.map(attribut => {
+  //       const wert = attribut.wert;
+  //       return {
+  //         ...attribut,
+  //         wert
+  //       };
+  //     });
+  //   });
+  // }
 
   getMaximaleGp() {
     return this.select(state => {
@@ -29,18 +43,20 @@ export class ChargenQuery extends Query<ChargenState> {
     const maximumGp = this.getMaximaleGp();
     const attributeGp = this.getAttributKosten();
     const fertigkeitenGp = this.getFertigkeitenKosten();
-    const combined = combineLatest(maximumGp, speziesGp, attributeGp, fertigkeitenGp);
-    return combined.pipe(map(([valueStream1, valueStream2, valueStream3, valueStream4]) => {
+    const abnormitaetenGp = this.getAbnormitaetenKosten();
+    const combined = combineLatest(maximumGp, speziesGp, attributeGp, fertigkeitenGp, abnormitaetenGp);
+    return combined.pipe(map(([valueStream1, valueStream2, valueStream3, valueStream4, valueStream5]) => {
       console.log({
         valueStream1,
         valueStream2,
         valueStream3,
-        valueStream4
+        valueStream4,
+        valueStream5
       });
 
       // return valueStream1 - valueStream2;
       // ToDO
-      return (valueStream1 || 0) - (valueStream2 || 0) - (valueStream3 || 0) - (valueStream4 || 0);
+      return (valueStream1 || 0) - (valueStream2 || 0) - (valueStream3 || 0) - (valueStream4 || 0) - (valueStream5 || 0);
     }));
   }
 
@@ -78,13 +94,14 @@ export class ChargenQuery extends Query<ChargenState> {
 
   getAbnormitaetenList() {
     return this.select(state => {
-      const abnormitaeten = Object.values(state.abnormitaeten);
-      return abnormitaeten.map(abnormitaet => {
-
-        return {
-          ...abnormitaet,
-        };
-      });
+      return Object.values(state.abnormitaeten);
+      // return abnormitaeten.map(abnormitaet => {
+      //
+      //   return {
+      //     ...abnormitaet,
+      //     name: abnormitaet.name
+      //   };
+      // });
     });
   }
 
@@ -122,6 +139,15 @@ export class ChargenQuery extends Query<ChargenState> {
       [fertigkeiten]
     ) => {
       return fertigkeiten.reduce((current, item) => current + item.gesamtKosten, 0);
+    }));
+  }
+
+  getAbnormitaetenKosten() {
+    return combineLatest(this.getAbnormitaetenList()).pipe(map((
+      [abnormitaeten]
+    ) => {
+      // return abnormitaeten.reduce((current, item) => current + item.kosten, 0);
+      return 0;
     }));
   }
 

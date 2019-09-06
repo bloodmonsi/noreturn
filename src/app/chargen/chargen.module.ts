@@ -43,7 +43,7 @@ export class ChargenModule {
 
   init() {
     this.load().then(res => {
-      this.chargenService.init(res.attribute, res.powerlevel, res.spezies, res.fertigkeiten);
+      this.chargenService.init(res.attribute, res.powerlevel, res.spezies, res.fertigkeiten, res.biologischeAbnormitaeten);
 
     }).catch(e => {
       console.log(e);
