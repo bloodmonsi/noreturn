@@ -4,6 +4,7 @@ import { Attribut } from './attribute/attribute.model';
 import { Spezies } from './spezies/spezies.model';
 import { Powerlevel } from './powerlevel/powerlevel.model';
 import { Fertigkeit } from './fertigkeiten/fertigkeiten.model';
+import { Abnormitaeten } from './biologische-abnormitaeten/biologische-abnormitaeten.model';
 
 export interface ChargenState {
   attribute: { [id: string]: Attribut };
@@ -33,16 +34,4 @@ export class ChargenStore extends Store<ChargenState>  {
   constructor() {
     super(createInitialState());
   }
-}
-
-export interface Abnormitaeten {
-  id: string;
-  name: string;
-  kosten: number;
-  mod: boolean;
-  input: boolean;
-  input2: boolean;
-  mehrfach: boolean;
-  organismusMod: number;
-  psycheMod: number;
 }

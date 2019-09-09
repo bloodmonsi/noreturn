@@ -14,10 +14,6 @@ export class OverviewComponent implements OnInit {
   }
 
   downloadPDF(): void {
-
-    // for (let i = 0; i < model.fertigkeiten.length; i++) {
-    //   pdfModel['fertigkeit' + i] = model.fertigkeiten[0].wert;
-    // }
     this.pdfService.fillPdf();
   }
 }

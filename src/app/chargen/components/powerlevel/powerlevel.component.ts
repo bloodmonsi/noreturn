@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PowerlevelQuery, PowerlevelStore, Powerlevel } from '../../store/index';
+import { Powerlevel } from '../../store/index';
 import { Observable } from 'rxjs';
-import { ID } from '@datorama/akita';
-import {ChargenQuery} from '../../store/chargen.query';
-import {ChargenService} from '../../chargen.service';
+import { ChargenQuery } from '../../store/chargen.query';
+import { ChargenService } from '../../chargen.service';
 
 @Component({
   selector: 'app-powerlevel',
@@ -14,7 +13,8 @@ export class PowerlevelComponent implements OnInit {
   currentPowerlevel: string;
   powerlevels$: Observable<Powerlevel[]>;
 
-  constructor(private chargenQuery: ChargenQuery, private chargenService: ChargenService) {}
+  constructor(private chargenQuery: ChargenQuery, private chargenService: ChargenService) {
+  }
 
   ngOnInit() {
     this.powerlevels$ = this.chargenQuery.getPowerlevelList();

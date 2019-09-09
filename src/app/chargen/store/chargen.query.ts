@@ -10,19 +10,53 @@ export class ChargenQuery extends Query<ChargenState> {
     super(chargenStore);
   }
 
-  // getWerteFuerPdf() {
-  //   return this.select(state => {
-  //     const attribute = Object.values(state.attribute).filter(attribute_ => attribute_.primaer);
-  //
-  //     return attribute.map(attribut => {
-  //       const wert = attribut.wert;
-  //       return {
-  //         ...attribut,
-  //         wert
-  //       };
-  //     });
-  //   });
-  // }
+  getWerteFuerPdf() {
+    return combineLatest(this.getPrimaerAttributWerteFuerPdf(), this.getSekundaerAttributWerteFuerPdf(),
+      this.getSpeziesWerteFuerPdf()).pipe(map((
+      [primaerAttribute, sekundaerAttribute, spezies]
+    ) => {
+      return [...primaerAttribute, ...sekundaerAttribute, ...spezies];
+    }));
+  }
+
+  getSpeziesWerteFuerPdf() {
+    const spezies = this.getCurrentSpezies();
+    const name = 'txtSpezies';
+    return {
+      name,
+      spezies
+    };
+  }
+
+  getPrimaerAttributWerteFuerPdf() {
+    return this.select(state => {
+      const attribute = Object.values(state.attribute).filter(attribute_ => attribute_.primaer);
+
+      return attribute.map(attribut => {
+        const wert = attribut.wert;
+        const name = 'txt' + attribut.name + 'Stufe';
+        return {
+          name,
+          wert
+        };
+      });
+    });
+  }
+
+  getSekundaerAttributWerteFuerPdf() {
+    return this.select(state => {
+      const attribute = Object.values(state.attribute).filter(attribute_ => !attribute_.primaer);
+
+      return attribute.map(attribut => {
+        const wert = attribut.wert;
+        const name = 'txt' + attribut.name + 'Stufe';
+        return {
+          name,
+          wert
+        };
+      });
+    });
+  }
 
   getMaximaleGp() {
     return this.select(state => {
@@ -46,13 +80,13 @@ export class ChargenQuery extends Query<ChargenState> {
     const abnormitaetenGp = this.getAbnormitaetenKosten();
     const combined = combineLatest(maximumGp, speziesGp, attributeGp, fertigkeitenGp, abnormitaetenGp);
     return combined.pipe(map(([valueStream1, valueStream2, valueStream3, valueStream4, valueStream5]) => {
-      console.log({
-        valueStream1,
-        valueStream2,
-        valueStream3,
-        valueStream4,
-        valueStream5
-      });
+      // console.log({
+      //   valueStream1,
+      //   valueStream2,
+      //   valueStream3,
+      //   valueStream4,
+      //   valueStream5
+      // });
 
       // return valueStream1 - valueStream2;
       // ToDO

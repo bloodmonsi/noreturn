@@ -20,3 +20,4 @@ export * from './powerlevel/powerlevel.service';
 export * from './powerlevel/powerlevel.state';
 export * from './powerlevel/powerlevel.model';
 export * from './chargen.store';
+export * from './chargen.query';

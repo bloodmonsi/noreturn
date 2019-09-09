@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ID } from '@datorama/akita';
-import { SpeziesQuery, SpeziesStore, Spezies, SpeziesService, ChargenStore } from '../../store';
+import { Spezies } from '../../store';
 import { Observable } from 'rxjs';
 import { ChargenService } from '../../chargen.service';
 import { ChargenQuery } from '../../store/chargen.query';
