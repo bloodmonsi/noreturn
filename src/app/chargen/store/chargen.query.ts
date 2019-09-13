@@ -20,12 +20,13 @@ export class ChargenQuery extends Query<ChargenState> {
   }
 
   getSpeziesWerteFuerPdf() {
-    const spezies = this.getCurrentSpezies();
-    const name = 'txtSpezies';
-    return {
-      name,
-      spezies
-    };
+    return this.selectCurrentSpezies().pipe(map(spezies => {
+      const name = 'txtSpezies';
+      return {
+        name,
+        spezies
+      };
+    }));
   }
 
   getPrimaerAttributWerteFuerPdf() {
@@ -140,9 +141,11 @@ export class ChargenQuery extends Query<ChargenState> {
   }
 
   getCurrentSpezies() {
-    return this.select(state => {
-      return state.currentSpezies;
-    });
+    return this.getSnapshot().currentSpezies;
+  }
+
+  selectCurrentSpezies() {
+    return this.select(state => state.currentSpezies);
   }
 
   getSpeziesList() {
