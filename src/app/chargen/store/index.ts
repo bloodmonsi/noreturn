@@ -21,3 +21,4 @@ export * from './powerlevel/powerlevel.state';
 export * from './powerlevel/powerlevel.model';
 export * from './chargen.store';
 export * from './chargen.query';
+export * from './biologische-abnormitaeten/biologische-abnormitaeten.model';

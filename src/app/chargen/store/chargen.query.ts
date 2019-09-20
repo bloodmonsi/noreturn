@@ -22,9 +22,10 @@ export class ChargenQuery extends Query<ChargenState> {
   getSpeziesWerteFuerPdf() {
     return this.selectCurrentSpezies().pipe(map(spezies => {
       const name = 'txtSpezies';
+      const wert = spezies;
       return {
         name,
-        spezies
+        wert
       };
     }));
   }

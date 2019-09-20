@@ -19,7 +19,7 @@ export class SpeziesComponent implements OnInit {
   ngOnInit() {
     this.speziesList$ = this.chargenQuery.getSpeziesList();
 
-    this.chargenQuery.getCurrentSpezies().subscribe(selectedId => {
+    this.chargenQuery.selectCurrentSpezies().subscribe(selectedId => {
       if (selectedId != null && selectedId !== this.currentSpezies) {
             this.currentSpezies = selectedId;
           }
