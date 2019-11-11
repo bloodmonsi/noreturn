@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ChargenState, ChargenStore } from './chargen.store';
 import { Query } from '@datorama/akita';
-import { combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 @Injectable()
 export class ChargenQuery extends Query<ChargenState> {
@@ -11,14 +11,14 @@ export class ChargenQuery extends Query<ChargenState> {
   }
 
   getWerteFuerPdf() {
-    return combineLatest(this.getPrimaerAttributWerteFuerPdf(), this.getSekundaerAttributWerteFuerPdf(),
-      this.getSpeziesWerteFuerPdf()).pipe(map((
-      [primaerAttribute, sekundaerAttribute, spezies]
+    return combineLatest(this.getPrimaerAttributWerteFuerPdf(), this.getSekundaerAttributWerteFuerPdf()).pipe(map((
+      [primaerAttribute, sekundaerAttribute]
     ) => {
-      return [...primaerAttribute, ...sekundaerAttribute, ...spezies];
+      return [...primaerAttribute, ...sekundaerAttribute];
     }));
   }
 
+  // hier kommt ein Fehler, das der Übertrag kein Arrayformat hat
   getSpeziesWerteFuerPdf() {
     return this.selectCurrentSpezies().pipe(map(spezies => {
       const name = 'txtSpezies';
@@ -29,6 +29,31 @@ export class ChargenQuery extends Query<ChargenState> {
       };
     }));
   }
+
+  // hier müssen folgende Infos übertragen werden: Fertigkeitenname muss mit index hochgezählt werdenm, Fertigkeitenstufe mit index,
+  // Attribut mit index
+
+  // getFertigkeitenWerteFuerPdf() {
+  //   return this.select(state => {
+  //     const fertigkeiten = Object.values(state.fertigkeiten);
+  //
+  //     return fertigkeiten.map(fertigkeit => {
+  //       if (fertigkeit.wert > 0) {
+  //         const fertigkeitnameFeld = 'txtFertigkeitName' + fertigkeit.id;
+  //         const fertigkeitname = fertigkeit.name;
+  //         const sttributFeld = 'txtFertigkeitAttribut' + fertigkeit.id;
+  //         const attribut = fertigkeit.attribut;
+  //         const stufeFeld = 'txtFertigkeitStufe' + fertigkeit.id;
+  //         const stufe = fertigkeit.wert;
+  //         return {
+  //           name,
+  //           wert
+  //         };
+  //       }
+  //
+  //     });
+  //   });
+  // }
 
   getPrimaerAttributWerteFuerPdf() {
     return this.select(state => {

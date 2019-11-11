@@ -4,6 +4,7 @@ import {ChargenService} from '../../chargen.service';
 import {DataSource} from '@angular/cdk/table';
 import {Abnormitaeten} from '../../store';
 import {Observable} from 'rxjs';
+import { MDCSwitch } from '@material/switch/component';
 
 @Component({
   selector: 'app-biologische-abnormitaeten',
@@ -17,11 +18,13 @@ export class BiologischeAbnormitaetenComponent implements OnInit {
 
   constructor(private chargenQuery: ChargenQuery, private chargenService: ChargenService) {
     this.dataSource = new MyAbilityDatasource(this.chargenQuery.getAbnormitaetenList());
-    this.dataColumns = ['name', 'kosten'];
+    this.dataColumns = ['name', 'kosten', 'wert'];
     this.abnormitaetenTotalCosts$ = this.chargenQuery.getAbnormitaetenKosten();
+
   }
 
   ngOnInit() {
+    // const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
   }
 
   incrementAbnormitaeten(abnormitaetenId: string) {

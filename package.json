@@ -25,11 +25,12 @@
     "@angular/router": "~7.1.2",
     "@datorama/akita": "^1.19.0",
     "@datorama/akita-ngdevtools": "^1.0.2",
+    "@material/switch": "^4.0.0",
     "core-js": "^2.5.4",
+    "gulp": "~4.0.2",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26",
-    "gulp": "~4.0.2"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
