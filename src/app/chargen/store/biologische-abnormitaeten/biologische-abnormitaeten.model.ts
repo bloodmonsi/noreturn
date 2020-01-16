@@ -8,4 +8,5 @@ export interface Abnormitaeten {
   mehrfach: boolean;
   organismusMod: number;
   psycheMod: number;
+  selected: boolean;
 }

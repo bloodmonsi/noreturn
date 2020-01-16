@@ -142,6 +142,21 @@ export class ChargenService {
     });
   }
 
+  selectAbnormitaet(abnormitaetId: string) {
+    this.chargenStore.update(state => {
+      return {
+        ...state,
+        abnormitaeten: {
+          ...state.abnormitaeten,
+          [abnormitaetId]: {
+            ...state.abnormitaeten[abnormitaetId],
+            selected: true
+          },
+        },
+      };
+    });
+  }
+
   incrementAttribut(attributId: string) {
     this.chargenStore.update(state => {
       return {

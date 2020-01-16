@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {ChargenQuery} from '../../store/chargen.query';
+import {Abnormitaeten, Attribut, ChargenQuery} from '../../store';
 import {ChargenService} from '../../chargen.service';
+import {combineLatest, Observable} from 'rxjs';
+import {map, take} from 'rxjs/operators';
 import {DataSource} from '@angular/cdk/table';
-import {Abnormitaeten} from '../../store';
-import {Observable} from 'rxjs';
-import { MDCSwitch } from '@material/switch/component';
+import {MyAbilityDatasource} from '../ability';
+
+export interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-biologische-abnormitaeten',
@@ -12,23 +17,34 @@ import { MDCSwitch } from '@material/switch/component';
   styleUrls: ['./biologische-abnormitaeten.component.css']
 })
 export class BiologischeAbnormitaetenComponent implements OnInit {
-  abnormitaetenTotalCosts$;
-  dataSource: MyAbilityDatasource;
+  // abnormitaetenTotalCosts$;
+  dataSource: MyAbnormitaetenDatasource;
   dataColumns: string[];
+  abnormitaeten: Abnormitaeten[];
+  selectedAbnormitaet: string;
 
   constructor(private chargenQuery: ChargenQuery, private chargenService: ChargenService) {
-    this.dataSource = new MyAbilityDatasource(this.chargenQuery.getAbnormitaetenList());
-    this.dataColumns = ['name', 'kosten', 'wert'];
-    this.abnormitaetenTotalCosts$ = this.chargenQuery.getAbnormitaetenKosten();
+    this.abnormitaeten = this.getCurrentObservableValue(this.chargenQuery.getAbnormitaetenList());
+    this.dataSource = new MyAbnormitaetenDatasource(this.chargenQuery.getSelectedAbnormitaetenList());
+    this.dataColumns = ['name', 'kosten'];
+    // this.abnormitaetenTotalCosts$ = this.chargenQuery.getAbnormitaetenKosten();
 
   }
 
   ngOnInit() {
-    // const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
+
   }
 
-  incrementAbnormitaeten(abnormitaetenId: string) {
-    // this.chargenService.incrementAbnormitaeten(abnormitaetenId);
+  getCurrentObservableValue<T>(ob: Observable<T>): T {
+    let value: T;
+
+    ob.pipe(take(1)).subscribe(v => value = v);
+    // console.log(value);
+    return value;
+  }
+
+  selectAbnormitaet(abnormitaetenId: string) {
+    this.chargenService.selectAbnormitaet(abnormitaetenId);
   }
 
   decrementAbnormitaeten(abnormitaetenId: string) {
@@ -37,16 +53,17 @@ export class BiologischeAbnormitaetenComponent implements OnInit {
 
 }
 
-// TODO: In eine Klasse packen....
-export class MyAbilityDatasource extends DataSource <Abnormitaeten> {
+export class MyAbnormitaetenDatasource extends DataSource <Abnormitaeten> {
   constructor(private data: Observable<Abnormitaeten[]>) {
     super();
   }
-
   connect() {
     return this.data;
   }
 
-  disconnect() {
-  }
+  disconnect() {}
 }
+
+
+
+

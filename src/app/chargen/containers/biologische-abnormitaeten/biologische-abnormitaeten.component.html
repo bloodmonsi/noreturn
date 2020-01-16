@@ -1,7 +1,16 @@
 <div class="bob">
   <div><fieldset>
     <legend>Biologische Abnormitäten</legend>
-    <mat-table [dataSource]="dataSource">
+    <mat-form-field>
+      <mat-label>Biologische Abnormitäten</mat-label>
+      <mat-select [(ngModel)]="selectedAbnormitaet" name="Abnormitaet" (selectionChange)="selectAbnormitaet($event.value)">
+        <mat-option *ngFor="let abnormitaet of abnormitaeten" [value]="abnormitaet.id">
+          {{abnormitaet.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-table [dataSource]="values">
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef>
           ID
@@ -24,22 +33,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           {{ row.kosten }}
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="wert">
-        <mat-header-cell *matHeaderCellDef>
-          Switch
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <div class="mdc-switch">
-            <div class="mdc-switch__track"></div>
-            <div class="mdc-switch__thumb-underlay">
-              <div class="mdc-switch__thumb">
-                <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">
-              </div>
-            </div>
-          </div>
-          <label for="basic-switch">off/on</label>
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="dataColumns"></mat-header-row>
